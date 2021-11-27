@@ -8,7 +8,7 @@
 
     <div class="bg-greeny flex min-h-screen py-60 flex justify-center w-1/2">
 
-            <img src="{{asset('image/BioUp! Logo.png')}}" alt="" class="w-76 h-64 ">
+            <img src="{{asset('image/BioUp! Logo.png')}}" alt="" class="w-80 h-80 ">
     </div>
     <div class="bg-white flex min-h-screen justify-center py-36 px-24 w-1/2 ">
         <div class=" w-full ">
