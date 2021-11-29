@@ -27,7 +27,10 @@ module.exports = {
             indigo: colors.indigo,
             purple: colors.violet,
             pink: colors.pink,
+            ungu : '#7267CB',
             greeny: '#1bbd74',
+            bandel : '#E2C2B9',
+            
         },
         spacing: {
             px: '1px',
@@ -73,6 +76,7 @@ module.exports = {
             pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             bounce: 'bounce 1s infinite',
         },
+
         backdropBlur: (theme) => theme('blur'),
         backdropBrightness: (theme) => theme('brightness'),
         backdropContrast: (theme) => theme('contrast'),
@@ -861,7 +865,10 @@ module.exports = {
         'active',
         'disabled',
     ],
+    
+
     variants: {
+        
         accessibility: ['responsive', 'focus-within', 'focus'],
         alignContent: ['responsive'],
         alignItems: ['responsive'],
