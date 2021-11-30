@@ -7,6 +7,7 @@ module.exports = {
     theme: {
 
         screens: {
+            mini : '320px',
             sm: '640px',
             md: '768px',
             lg: '1024px',
@@ -30,7 +31,7 @@ module.exports = {
             ungu : '#7267CB',
             greeny: '#1bbd74',
             bandel : '#E2C2B9',
-            
+
         },
         spacing: {
             px: '1px',
@@ -247,8 +248,9 @@ module.exports = {
             DEFAULT: '1',
         },
         fontFamily: {
+            poppins :['Poppins'],
             sans: [
-                'ui-sans-serif',
+                'Roboto',
                 'system-ui',
                 '-apple-system',
                 'BlinkMacSystemFont',
@@ -865,10 +867,10 @@ module.exports = {
         'active',
         'disabled',
     ],
-    
+
 
     variants: {
-        
+
         accessibility: ['responsive', 'focus-within', 'focus'],
         alignContent: ['responsive'],
         alignItems: ['responsive'],
