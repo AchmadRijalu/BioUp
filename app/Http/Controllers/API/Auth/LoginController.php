@@ -73,6 +73,7 @@ class LoginController extends Controller
         }
     }
     public function logout(){
+        /** @var \App\Models\User $user */
         $user = Auth::user();
         $accessToken = Auth::user()->token();
         DB::table('oauth_refresh_tokens')->where('access_token_id', $accessToken->id)->update(['revoked' => true]);
