@@ -23,7 +23,7 @@
             <h1 class="text-green-500 font-bold font text-5xl font-poppins">
                 Login
             </h1>
-            <form action="" method="POST">
+            <form action="" method="GET">
                 <div class="mt-12 w-80 ">
                     {{-- <label for="email" class="text-greeny">Username</label><br> --}}
                     <input type="text" name="email" value="" class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-full focus transition delay-200 font-weight-bold  focus:ring-green-600 text-green-500" placeholder="Username">
@@ -32,21 +32,22 @@
                     {{-- <label for="email">Password</label><br> --}}
                     <input type="password" name="email" value="" class=" font-poppins border-4 border-green-400 rounded-xl h-10 w-full font-bold" placeholder="Password">
                 </div>
-                <div class="mt-8 w-100 mt-4 flex flex-column justify-between">
-                    <p>
-                        <a href="" class="text-black opacity-40">Lupa Password?</a>
-                    </p>
-                    <button class="bg-green-500 w-40 h-12 text-2xl border-2  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center" type="submit">
-                        Login
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                          </svg>
-                    </button>
-                </div>
+
 
 
 
             </form>
+            <div class="mt-8 w-100 mt-4 flex flex-column justify-between">
+                <p>
+                    <a href="" class="text-black opacity-40">Lupa Password?</a>
+                </p>
+                <button class="bg-green-500 w-40 h-12 text-2xl border-2  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"  onclick="location.href='/materi'">
+                    Login
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                      </svg>
+                </button>
+            </div>
             <div class="w-100 mt-16 rounded-3xl">
                 <button type="submit" class="bg-green-500 w-full flex flex-column justify-center items-center h-16 rounded-3xl font-bold text-white transform scale-75 hover:bg-green-400 hover:scale-100 transition delay-50 text-xl font-poppins" onclick="location.href='/register'">
                     Tidak punya akun? Daftar disini

@@ -23,3 +23,7 @@ Route::get('/register', function(){
 Route::get('/login', function(){
     return view('login');
 });
+
+Route::get('/materi', function(){
+    return view('char');
+});

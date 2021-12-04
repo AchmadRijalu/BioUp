@@ -31,6 +31,8 @@ module.exports = {
             ungu : '#7267CB',
             greeny: '#1bbd74',
             bandel : '#E2C2B9',
+            second : '#F2F013',
+            greenySecond : '#22DE89',
 
         },
         spacing: {
@@ -76,6 +78,7 @@ module.exports = {
             ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
             pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             bounce: 'bounce 1s infinite',
+            fasterpulse : 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         },
 
         backdropBlur: (theme) => theme('blur'),
@@ -98,6 +101,7 @@ module.exports = {
             'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
             'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
             'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
+            'greenyBackground' : ''
         },
         backgroundOpacity: (theme) => theme('opacity'),
         backgroundPosition: {
@@ -465,6 +469,8 @@ module.exports = {
             '5/6': '83.333333%',
             full: '100%',
             screen: '100vh',
+            cardviewheight : '13rem',
+
         }),
         inset: (theme, {
             negative
@@ -838,6 +844,9 @@ module.exports = {
             screen: '100vw',
             min: 'min-content',
             max: 'max-content',
+            cardviewwidth : '33rem',
+
+
         }),
         zIndex: {
             auto: 'auto',
