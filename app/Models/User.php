@@ -21,10 +21,12 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'photo_path',
+        'name',
+        'school',
+        'city',
+        'birthyear',
         'is_login',
         'is_active',
-        'total_score',
     ];
 
     protected $primaryKey = 'id';

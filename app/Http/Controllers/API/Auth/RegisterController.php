@@ -16,7 +16,11 @@ class RegisterController extends Controller
             [
                 'username' => 'required|unique:users,username', //username harus unik, tidak boleh sama
                 'email' => 'required|email|unique:users,email', //email harus unik, tidak boleh sama
-                'password' => 'required|string|min:8|confirmed' //password minim 8 karakter
+                'password' => 'required|string|min:8|confirmed', //password minim 8 karakter
+                'name' => 'required',
+                'school' => 'required',
+                'city' => 'required',
+                'birthyear' => 'required',
             ],
             [
                 'username.required' => "Username tidak boleh kosong",
@@ -27,6 +31,10 @@ class RegisterController extends Controller
                 'password.required' => "Password tidak boleh kosong",
                 'password.min' => "Password tidak boleh kurang dari 8 karakter",
                 'password.confirmed' => "Password dan Confirm Password harus sama",
+                'name' => 'Nama tidak boleh kosong',
+                'school' => 'Nama Sekolah tidak boleh kosong',
+                'city' => 'Nama Kota tidak boleh kosong',
+                'birthyear' => 'Tahun lahir tidak boleh kosong',
             ]
         );
         $user = $this->newUser($request->all());
@@ -45,7 +53,11 @@ class RegisterController extends Controller
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'name' => $data['name'],
+            'school' => $data['school'],
+            'city' => $data['city'],
+            'birthyear' => $data['birthyear'],
         ]);
     }
 }
