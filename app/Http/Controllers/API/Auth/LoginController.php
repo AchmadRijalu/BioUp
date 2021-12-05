@@ -44,7 +44,7 @@ class LoginController extends Controller
             if($check->is_login == '0'){
                 if (Auth::attempt($user)){
 
-                    $response = Http::asForm()->post('http://10.169.54.39/oauth/token', [
+                    $response = Http::asForm()->post('http://10.169.17.17/oauth/token', [
                         'grant_type' => 'password',
                         'client_id' => $this->client->id,
                         'client_secret' => $this->client->secret,
