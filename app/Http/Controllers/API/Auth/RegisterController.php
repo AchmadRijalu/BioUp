@@ -31,10 +31,10 @@ class RegisterController extends Controller
                 'password.required' => "Password tidak boleh kosong",
                 'password.min' => "Password tidak boleh kurang dari 8 karakter",
                 'password.confirmed' => "Password dan Confirm Password harus sama",
-                'name' => 'Nama tidak boleh kosong',
-                'school' => 'Nama Sekolah tidak boleh kosong',
-                'city' => 'Nama Kota tidak boleh kosong',
-                'birthyear' => 'Tahun lahir tidak boleh kosong',
+                'name.required' => 'Nama tidak boleh kosong',
+                'school.required' => 'Nama Sekolah tidak boleh kosong',
+                'city.required' => 'Nama Kota tidak boleh kosong',
+                'birthyear.required' => 'Tahun lahir tidak boleh kosong',
             ]
         );
         $user = $this->newUser($request->all());
