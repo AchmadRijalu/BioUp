@@ -21,7 +21,8 @@ class LoginController extends Controller
         $this->client = Client::find(2);
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $this->validate(
             $request,
             [
@@ -39,40 +40,46 @@ class LoginController extends Controller
         ];
 
         $check = DB::table('users')->where('username', $request->username)->first();
+        if ($check != null) {
+            if ($check->is_active == '1') {
+                if ($check->is_login == '0') {
+                    if (Auth::attempt($user)) {
 
-        if($check->is_active == '1'){
-            if($check->is_login == '0'){
-                if (Auth::attempt($user)){
-
-                    $response = Http::asForm()->post('http://10.169.17.17/oauth/token', [ //ini diganti
-                        'grant_type' => 'password',
-                        'client_id' => $this->client->id,
-                        'client_secret' => $this->client->secret,
-                        'username' => $request->username,
-                        'password' => $request->password,
-                        'scope' => '*',
-                    ]);
-                    if (!$response == null){
-                        $this->isLogin(Auth::id());
+                        $response = Http::asForm()->post('http://192.168.1.67/oauth/token', [ //ini diganti
+                            'grant_type' => 'password',
+                            'client_id' => $this->client->id,
+                            'client_secret' => $this->client->secret,
+                            'username' => $request->username,
+                            'password' => $request->password,
+                            'scope' => '*',
+                        ]);
+                        if (!$response == null) {
+                            $this->isLogin(Auth::id());
+                        }
+                        return $response->json();
+                    } else {
+                        return response([
+                            'message' => 'Password salah!'
+                        ]);
                     }
-                    return $response->json();
-                }else{
+                } else {
                     return response([
-                        'message'=>'Gagal login, silakan coba lagi'
+                        'message' => 'Akun sudah digunakan diperangkat lain'
                     ]);
                 }
-            }else{
+            } else {
                 return response([
-                    'message'=>'Akun sudah digunakan diperangkat lain'
+                    'message' => 'Akun telah diban'
                 ]);
             }
-        }else{
+        } else {
             return response([
-                'message'=>'Akun telah diban'
+                'message' => 'Akun tidak ditemukan'
             ]);
         }
     }
-    public function logout(){
+    public function logout()
+    {
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $accessToken = Auth::user()->token();
@@ -82,10 +89,11 @@ class LoginController extends Controller
         ]);
         $accessToken->revoke();
         return response([
-            'message'=>'Berhasil Log Out!'
+            'message' => 'Berhasil Log Out!'
         ]);
     }
-    private function isLogin(int $id){
+    private function isLogin(int $id)
+    {
         $user = User::findOrFail($id);
         return $user->update([
             'is_login' => '1'
