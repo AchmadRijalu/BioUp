@@ -11,8 +11,10 @@ module.exports = {
             sm: '640px',
             md: '768px',
             lg: '1024px',
-            xl: '1280px',
+            xl: '1300px',
             '2xl': '1536px',
+
+
         },
         colors: {
             transparent: 'transparent',
@@ -470,6 +472,10 @@ module.exports = {
             full: '100%',
             screen: '100vh',
             cardviewheight : '13rem',
+            cardviewheight2 : '12rem',
+            minicardheight : '9rem',
+            minimobileheight : '4rem',
+            custom1 : '26rem',
 
         }),
         inset: (theme, {
@@ -844,7 +850,11 @@ module.exports = {
             screen: '100vw',
             min: 'min-content',
             max: 'max-content',
+            levelbutton : '13rem',
             cardviewwidth : '33rem',
+            cardviewwidth2 : '32rem',
+            minicardwidth : '29rem',
+            minimobilewidth : '24rem',
 
 
         }),

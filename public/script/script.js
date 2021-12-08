@@ -5,3 +5,15 @@ const sidebar = document.querySelector(".sidebar");
 btn.addEventListener("click", () => {
   sidebar.classList.toggle("-translate-x-full");
 });
+
+
+function playAudio(url) {
+    new Audio(url).play();
+  }
+
+
+
+
+
+
+

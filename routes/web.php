@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('char');
 });
 Route::get('/register', function(){
     return view('register');
@@ -24,6 +24,23 @@ Route::get('/login', function(){
     return view('login');
 });
 
-Route::get('/materi', function(){
-    return view('char');
+
+
+Route::get('/level', function() {
+    return view('level');
+});
+
+Route::get('/tentang' , function(){
+    return view('tentang');
+});
+Route::get('/presoal' , function(){
+    return view('presoal');
+});
+
+Route::get('/papan' , function(){
+    return view('papan');
+});
+
+Route::get('/soal' , function(){
+    return view('soal');
 });

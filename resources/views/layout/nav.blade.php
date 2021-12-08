@@ -20,7 +20,7 @@
     <img src="{{ asset('image/BioUp! Logo (Transparent).png') }}" alt="" class="w-16 h-16 animate-pulse">
 
     <!-- mobile menu button -->
-    <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700 ">
+    <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700 mr-4">
         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -29,9 +29,11 @@
 </div>
 
 <!-- sidebar -->
-<div
-    class="sidebar bg-greeny flex flex-col items-center text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 
+<div
+
+    class="sidebar bg-greeny flex flex-col items-center text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+    {{-- min-h-full --}}
     <!-- logo -->
     <a href="#" class="text-white flex flex-col items-center space-x-2 px-4 ">
         {{-- <svg class="w-8 h-8 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -46,7 +48,7 @@
 
     <!-- nav -->
     <nav class="w-full">
-        <a href="#"
+        <a href="/"
             class="block font-bold text-xl flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white  hover:text-greeny">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -57,8 +59,8 @@
             </svg>
             Bermain
         </a>
-        <a href=""
-            class="block py-2.5 px-4  font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
+        <a href="/papan"
+            class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,8 +68,8 @@
             </svg>
             Papan Skor
         </a>
-        <a href=""
-            class="block py-2.5 px-4 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
+        <a href="/tentang"
+            class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,6 +77,7 @@
             </svg>
             Tentang Bio Up!
         </a>
+
         {{-- <a href="" class="block py-2.5 px-4 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white hover:text-white">
             Pricing
         </a> --}}
