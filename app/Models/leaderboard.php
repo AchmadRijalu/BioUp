@@ -12,4 +12,9 @@ class leaderboard extends Model
     protected $primaryKey = 'lboardID';
 
     protected $table = 'bio12_leaderboards';
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'userID');
+    }
 }

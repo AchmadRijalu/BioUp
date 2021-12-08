@@ -49,8 +49,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function findForPassport($username)
+    // public function findForPassport($username)
+    // {
+    //     return $this->where('username', $username)->first();
+    // }
+
+    public function characters() //untuk table bio12_user_levels
     {
-        return $this->where('username', $username)->first();
+        return $this->belongsToMany(Character::class, 'bio12_user_levels')->withPivot('levelID');
+    }
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class, 'bio12_user_levels')->withPivot('charID');
+    }
+
+    public function character() //untuk table bio12_user_characters
+    {
+        return $this->belongsToMany(Character::class, 'bio12_user_characters')->withPivot('userID');
+    }
+    public function leaderboard()
+    {
+        return $this->belongsTo(leaderboard::class, 'userID');
     }
 }
