@@ -38,5 +38,17 @@ class LevelSeeder extends Seeder
             'levelID' => '6',
             'charID' => '2'
          ]);
+         DB::table('bio12_levels')->insert([
+            'levelID' => '7',
+            'charID' => '3'
+         ]);
+         DB::table('bio12_levels')->insert([
+            'levelID' => '8',
+            'charID' => '3'
+         ]);
+         DB::table('bio12_levels')->insert([
+            'levelID' => '9',
+            'charID' => '3'
+         ]);
     }
 }

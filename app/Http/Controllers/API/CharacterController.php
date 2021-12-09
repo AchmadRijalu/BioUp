@@ -12,12 +12,12 @@ class CharacterController extends Controller
     public function getAllChara()
     {
         $allChara = Character::all();
-        return response()->json(['character' => $allChara]);
+        return response()->json(['characters' => $allChara]);
     }
 
     public function getLevelByChara($charID)
     {
-        $level = Level::all()->where('charID', $charID);
-        return response()->json(['level', $level]);
+        $chara= Level::where('charID', $charID)->get();
+        return response()->json($chara);
     }
 }
