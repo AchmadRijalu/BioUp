@@ -63,7 +63,7 @@
             <div class="w-full flex flex-row justify-center mt-7">
                 <button
                     class="bg-green-500 animate-bounce mt-4 w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-2xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
-                    onclick="location.href='/soal'">
+                    onclick="location.href='{{route('soal.index')}}'">
                     Mulai
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">

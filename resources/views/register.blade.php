@@ -1,8 +1,16 @@
-@extends('layout.main')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daftar</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
 
-@section('title', 'Daftar BioUP')
-
-@section('content')
+</body>
+</html>
     <div
         class="lg:bg-white lg:min-h-screen  lg:flex lg:flex-row md:flex md:flex-col-reverse sm:flex sm:flex-col-reverse mini:flex mini:flex-col-reverse">
         <div
@@ -94,4 +102,3 @@
         </div>
 
     </div>
-@endsection

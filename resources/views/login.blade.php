@@ -1,9 +1,17 @@
-@extends('layout.main')
 
-@section('title', 'Login BioUP')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Bio Up!</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
 
-@section('content')
-
+</body>
+</html>
     <div class="lg:bg-white lg:min-h-screen lg:flex lg:flex-row  ">
 
         <div
@@ -49,7 +57,7 @@
                     </p>
                     <button
                         class="bg-green-500 w-40 h-12 text-2xl border-2  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
-                        onclick="location.href='/materi'">
+                        onclick="location.href='{{route('character.index')}}'">
                         Login
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -61,7 +69,7 @@
                 <div class="w-100 mt-16 rounded-3xl">
                     <button type="submit"
                         class="bg-green-500 w-full flex flex-column justify-center items-center h-16 rounded-3xl font-bold text-white transform scale-75 hover:bg-green-400 hover:scale-100 transition delay-50 text-xl font-poppins"
-                        onclick="location.href='/register'">
+                        onclick="location.href='{{route('register.index')}}'">
                         Tidak punya akun? Daftar disini
 
                     </button>
@@ -70,4 +78,4 @@
 
         </div>
     </div>
-@endsection
+

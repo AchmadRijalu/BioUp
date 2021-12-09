@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CharController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SoalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('char');
+    return view('login');
 });
-Route::get('/register', function(){
-    return view('register');
-});
+Route::resource('register', RegisterController::class);
 
 Route::get('/login', function(){
     return view('login');
 });
 
+Route::resource('character', CharController::class);
 
+Route::resource('soal', SoalController::class);
 
 Route::get('/level', function() {
     return view('level');
@@ -41,6 +44,4 @@ Route::get('/papan' , function(){
     return view('papan');
 });
 
-Route::get('/soal' , function(){
-    return view('soal');
-});
+
