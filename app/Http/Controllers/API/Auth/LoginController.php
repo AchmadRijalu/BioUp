@@ -26,20 +26,20 @@ class LoginController extends Controller
         $this->validate(
             $request,
             [
-                'username' => 'required', //username tidak boleh null
+                'email' => 'required', //username tidak boleh null
                 'password' => 'required' //password tidak boleh null
             ],
             [
-                'username.required' => "Username tidak boleh kosong",
+                'email.required' => "Username tidak boleh kosong",
                 'password.required' => "Password tidak boleh kosong"
             ]
         );
         $user = [
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => $request->password,
         ];
 
-        $check = DB::table('users')->where('username', $request->username)->first();
+        $check = DB::table('users')->where('email', $request->email)->first();
         if ($check != null) {
             if ($check->is_active == '1') {
                 if ($check->is_login == '0') {
@@ -49,7 +49,7 @@ class LoginController extends Controller
                             'grant_type' => 'password',
                             'client_id' => $this->client->id,
                             'client_secret' => $this->client->secret,
-                            'username' => $request->username,
+                            'username' => $request->email,
                             'password' => $request->password,
                             'scope' => '*',
                         ]);
