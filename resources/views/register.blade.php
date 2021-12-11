@@ -23,7 +23,8 @@
                     Sudah punya akun? <a href="/login" class="font-bold underline  hover:text-green-500">Klik disini</a>
                 </p>
 
-                <form action="" method="POST">
+                <form action="{{route('register.store')}}" method="POST">
+                    @csrf
                     <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
                         {{-- <label for="username" class="">Username</label><br> --}}
                         <input type="text" name="username" value=""
@@ -51,7 +52,7 @@
                     </div>
                     <div class="mt-3 w-full mt-4 flex justify-content-center justify-center items-center">
                         {{-- <label for="email">Password</label><br> --}}
-                        <input type="password" name="email" value=""
+                        <input type="password" name="password" value=""
                             class=" font-poppins border-4 border-green-400 rounded-xl h-10 w-96 font-bold"
                             placeholder="Password">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -63,14 +64,50 @@
                     </div>
                     <div class="mt-3 w-full mt-4 flex justify-content-center justify-center items-center">
                         {{-- <label for="email">Password Confirmation</label><br> --}}
-                        <input type="password" name="password_confirmation" value=""
+                        <input type="text" name="nama" value=""
                             class="font-poppins border-4 border-green-400 rounded-xl h-10 w-96 font-bold"
-                            placeholder="Password Confirmation">
+                            placeholder="nama">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
+                        {{-- <label for="username" class="">Username</label><br> --}}
+                        <input type="text" name="sekolah" value=""
+                            class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                            placeholder="Sekolah">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
+                        {{-- <label for="username" class="">Username</label><br> --}}
+                        <input type="text" name="kota" value=""
+                            class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                            placeholder="Kota">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
+                        {{-- <label for="username" class="">Username</label><br> --}}
+                        <input type="text" name="birthyear" value=""
+                            class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                            placeholder="Tahun lahir">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                     <div class="mt-8 w-100 mt-4 flex flex-column justify-center">
