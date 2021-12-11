@@ -89,12 +89,22 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended(route('character.index'));
         }
 
-        dd('berhasil login');
-        // return back()->with('loginError', 'Login Gagal');
+        // return redirect()->intended(route('character.index'));
+        return back()->with('loginError', 'Login Gagal');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
