@@ -31,7 +31,6 @@
 <!-- sidebar -->
 
 <div
-
     class="sidebar bg-greeny flex flex-col items-center text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
     {{-- min-h-full --}}
     <!-- logo -->
@@ -48,7 +47,7 @@
 
     <!-- nav -->
     <nav class="w-full">
-        <a href="{{route('character.index')}}"
+        <a href="{{ route('character.index') }}"
             class="block font-bold text-xl flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white  hover:text-greeny">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -77,6 +76,26 @@
             </svg>
             Tentang Bio Up!
         </a>
+
+        @auth
+            <p class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded  hover:text-greeny">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Login dengan: {{ auth()->user()->name }}
+
+            </p>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="items-center flex">
+                    Logout
+                </button>
+            </form>
+            </a>
+        @endauth
+
 
         {{-- <a href="" class="block py-2.5 px-4 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white hover:text-white">
             Pricing

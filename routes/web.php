@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\CharController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SoalController;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CharController;
+use App\Http\Controllers\SoalController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,30 +20,34 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
-});
-Route::resource('register', RegisterController::class);
+})->name('/')->middleware('guest');
 
-Route::get('/login', function(){
-    return view('login');
-});
+Route::post('/', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resource('character', CharController::class);
+Route::resource('register', RegisterController::class)->middleware('guest');
 
-Route::resource('soal', SoalController::class);
+Route::resource('character', CharController::class)->middleware('auth');
 
-Route::get('/level', function() {
+Route::resource('soal', SoalController::class)->middleware('auth');
+
+
+
+Route::get('/level', function () {
     return view('level');
-});
+})->middleware('auth');
 
-Route::get('/tentang' , function(){
+Route::get('/tentang', function () {
     return view('tentang');
-});
-Route::get('/presoal' , function(){
+})->middleware('auth');
+Route::get('/presoal', function () {
     return view('presoal');
-});
+})->middleware('auth');
 
-Route::get('/papan' , function(){
+Route::get('/papan', function () {
     return view('papan');
+})->middleware('auth');
+
+Route::get('/pupup', function(){
+return view('PupUp');
 });
-
-

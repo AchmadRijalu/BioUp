@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
-class RegisterController extends Controller
+use Illuminate\Support\Facades\Auth;
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class RegisterController extends Controller
     public function index()
     {
         //
-        return view('register', ['title ' => 'Daftar'] );
+
     }
 
     /**
@@ -27,7 +25,6 @@ class RegisterController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -39,17 +36,6 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         //
-        $register =User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password'=> Hash::make($request->password),
-            'name' => $request->nama,
-            'school' => $request->sekolah,
-            'city' => $request->kota,
-            'birthyear' => $request->birthyear,
-        ]);
-        $request->session()->flash('success', 'Regisrasi Berhasil!, Silahkan Masuk');
-        return redirect('/');
     }
 
     /**
@@ -95,5 +81,30 @@ class RegisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function authenticate(Request $request){
+         $credentials =$request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended(route('character.index'));
+        }
+
+        // return redirect()->intended(route('character.index'));
+        return back()->with('loginError', 'Login Gagal');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
