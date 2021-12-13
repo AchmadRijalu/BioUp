@@ -94,9 +94,15 @@
                                 d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                         </svg>
                     </button>
+                    <br>
 
-                </div>
+
+
             </form>
+            <button class="w-32  bg-yellow-300" onclick="location.href='/pupup'">
+                Pop Up
+            </button>
+        </div>
             <div class="w-100 mt-16 rounded-3xl">
                 <button type=""
                     class="bg-green-500 w-full flex flex-column justify-center items-center h-16 rounded-3xl font-bold text-white transform scale-75 hover:bg-green-400 hover:scale-100 transition delay-50 text-xl font-poppins"

@@ -45,7 +45,7 @@ class LoginController extends Controller
                 if ($check->is_login == '0') {
                     if (Auth::attempt($user)) {
 
-                        $response = Http::asForm()->post('http://192.168.1.67/oauth/token', [ //ini diganti
+                        $response = Http::asForm()->post('http://192.168.0.146/oauth/token', [ //ini diganti
                             'grant_type' => 'password',
                             'client_id' => $this->client->id,
                             'client_secret' => $this->client->secret,
