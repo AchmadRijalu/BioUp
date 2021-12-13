@@ -47,3 +47,7 @@ Route::get('/presoal', function () {
 Route::get('/papan', function () {
     return view('papan');
 })->middleware('auth');
+
+Route::get('/pupup', function(){
+return view('PupUp');
+});
