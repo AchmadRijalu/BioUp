@@ -18,6 +18,6 @@ class CharacterController extends Controller
     public function getLevelByChara($charID)
     {
         $chara= Level::where('charID', $charID)->get();
-        return response()->json($chara);
+        return response(['levels' => $chara]);
     }
 }
