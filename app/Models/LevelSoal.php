@@ -9,7 +9,5 @@ class LevelSoal extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'levelsoalID';
-
-    protected $table = 'bio12_levels_soals';
+    protected $table = 'bio12_level_soals';
 }

@@ -14,7 +14,7 @@ class CreateLeaderboardsTable extends Migration
     public function up()
     {
         Schema::create('bio12_leaderboards', function (Blueprint $table) {
-            $table->id("lboardID");
+            $table->id();
             $table->foreignId("userID")->constrained("users", 'id')->onDelete("cascade")->onUpdate("cascade");
             $table->integer("totalscore");
             $table->timestamps();

@@ -15,67 +15,67 @@ class LevelSeeder extends Seeder
    public function run()
    {
       DB::table('bio12_levels')->insert([
-         'levelID' => '1',
+         'id' => '1',
          'charID' => '1'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '2',
+         'id' => '2',
          'charID' => '1'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '3',
+         'id' => '3',
          'charID' => '1'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '4',
+         'id' => '4',
          'charID' => '2'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '5',
+         'id' => '5',
          'charID' => '2'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '6',
+         'id' => '6',
          'charID' => '2'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '7',
+         'id' => '7',
          'charID' => '3'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '8',
+         'id' => '8',
          'charID' => '3'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '9',
+         'id' => '9',
          'charID' => '3'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '10',
+         'id' => '10',
          'charID' => '4'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '11',
+         'id' => '11',
          'charID' => '4'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '12',
+         'id' => '12',
          'charID' => '4'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '13',
+         'id' => '13',
          'charID' => '5'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '14',
+         'id' => '14',
          'charID' => '5'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '15',
+         'id' => '15',
          'charID' => '5'
       ]);
       DB::table('bio12_levels')->insert([
-         'levelID' => '16',
+         'id' => '16',
          'charID' => '6'
       ]);
    }

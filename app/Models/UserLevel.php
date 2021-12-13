@@ -9,7 +9,5 @@ class UserLevel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'userlevelID';
-
-    protected $table = 'bio12_users_levels';
+    protected $table = 'bio12_user_levels';
 }

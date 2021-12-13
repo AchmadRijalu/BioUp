@@ -9,8 +9,6 @@ class Soal extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'soalID';
-
     protected $table = 'bio12_soals';
 
     public function levels()

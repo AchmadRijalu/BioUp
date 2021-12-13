@@ -14,10 +14,11 @@ class CreateUserCharactersTable extends Migration
     public function up()
     {
         Schema::create('bio12_user_characters', function (Blueprint $table) {
-            $table->id("usercharID");
-            $table->foreignId("userID")->constrained("users", "id")->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("charID")->constrained("bio12_characters", "charID")->onDelete("cascade")->onUpdate("cascade");
+            $table->id();
+            $table->foreignId("user_id")->constrained("users", "id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("character_id")->constrained("bio12_characters", "id")->onDelete("cascade")->onUpdate("cascade");
             $table->integer("score");
+            $table->timestamps();
         });
     }
 

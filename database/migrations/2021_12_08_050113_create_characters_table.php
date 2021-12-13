@@ -14,7 +14,7 @@ class CreateCharactersTable extends Migration
     public function up()
     {
         Schema::create('bio12_characters', function (Blueprint $table) {
-            $table->id("charID");
+            $table->id();
             $table->integer("healthPoint");
             $table->string("nama");
             $table->string("charimgpath");

@@ -14,7 +14,7 @@ class CreateSoalsTable extends Migration
     public function up()
     {
         Schema::create('bio12_soals', function (Blueprint $table) {
-            $table->id("soalID");
+            $table->id();
             $table->string("pertanyaan");
             $table->string("imgpath")->nullable();
             $table->string("jawaban");

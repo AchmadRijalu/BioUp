@@ -14,10 +14,10 @@ class CreateUserLevelsTable extends Migration
     public function up()
     {
         Schema::create('bio12_user_levels', function (Blueprint $table) {
-            $table->id("userlevelID");
-            $table->foreignId("levelID")->constrained("bio12_levels", 'levelID')->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("charID")->constrained("bio12_characters", 'charID')->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("userID")->constrained("users", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->id();
+            $table->foreignId("level_id")->constrained("bio12_levels", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("character_id")->constrained("bio12_characters", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("user_id")->constrained("users", 'id')->onDelete("cascade")->onUpdate("cascade");
             $table->integer("score");
             $table->timestamps();
         });

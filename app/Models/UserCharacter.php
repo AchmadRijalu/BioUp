@@ -9,7 +9,10 @@ class UserCharacter extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'usercharID';
+    protected $fillable = ['character_id', 'user_id', 'score'];
 
-    protected $table = 'bio12_users_characters';
+    public $timestamps = false;
+
+    protected $table = 'bio12_user_characters';
+
 }

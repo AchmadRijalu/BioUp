@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use Illuminate\Http\Request;
+use App\Models\UserCharacter;
+use Illuminate\Support\Facades\Auth;
 
 class CharController extends Controller
 {
@@ -15,9 +17,19 @@ class CharController extends Controller
     public function index()
     {
         //
+        if(UserCharacter::where('user_id', Auth::id())->first() == null){
+            UserCharacter::create([
+                'user_id' => Auth::id(),
+                'character_id' => 1,
+                'score' => 0,
+            ]);
+        }
         $character = Character::all();
+        $userchar = UserCharacter::where('user_id', Auth::id())
+            ->orderBy('character_id')
+            ->get();
 
-        return view('char', compact('character'));
+        return view('char', compact('character', 'userchar'));
     }
 
     /**
