@@ -17,11 +17,8 @@ class CharacterController extends Controller
 
     public function getLevelByChara($charID)
     {
-<<<<<<< HEAD
         $chara= Level::where('charID', $charID)->get();
-=======
         $chara = Level::where('charID', $charID)->get();
->>>>>>> 3680bad8474bd5fbeabf514b073e396e718f28af
         return response(['levels' => $chara]);
     }
 }
