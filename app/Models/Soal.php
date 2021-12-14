@@ -11,8 +11,11 @@ class Soal extends Model
 
     protected $table = 'bio12_soals';
 
-    public function levels()
-    {
-        return $this->belongsToMany(Level::class, 'bio12_level_soals')->withPivot('soalID');
+    public function levels(){
+        return $this->belongsToMany(Level::class, 'bio12_level_soals');
     }
+    // public function levels()
+    // {
+    //     return $this->belongsToMany(Level::class, 'bio12_level_soals')->withPivot('soalID');
+    // }
 }

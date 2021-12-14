@@ -11,6 +11,14 @@ class Level extends Model
 
     protected $table = 'bio12_levels';
 
+    public function soals(){
+        return $this->belongsToMany(Soal::class, 'bio12_level_soals');
+    }
+
+    public function char(){
+        return $this->belongsTo(Char::class);
+    }
+
     // public function users()
     // {
     //     return $this->belongsToMany(User::class, 'bio12_user_levels')->withPivot('charID');

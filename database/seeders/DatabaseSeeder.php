@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CharSeeder::class,
             LevelSeeder::class,
             UserCharSeeder::class,
+            LevelSoalSeeder::class
         ]);
     }
 }

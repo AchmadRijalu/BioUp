@@ -15,8 +15,8 @@ class CreateLevelSoalsTable extends Migration
     {
         Schema::create('bio12_level_soals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("levelID")->constrained("bio12_levels", 'id')->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("soalID")->constrained("bio12_soals", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("level_id")->constrained("bio12_levels", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("soal_id")->constrained("bio12_soals", 'id')->onDelete("cascade")->onUpdate("cascade");
         });
     }
 

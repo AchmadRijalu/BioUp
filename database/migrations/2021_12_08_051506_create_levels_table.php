@@ -15,7 +15,7 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('bio12_levels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("charID")->constrained("bio12_characters", 'id')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("character_id")->constrained("bio12_characters", 'id')->onDelete("cascade")->onUpdate("cascade");
         });
     }
 
