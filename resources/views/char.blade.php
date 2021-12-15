@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="bg-gray-400 mt-3  md:w-cardviewwidth2 md:h-cardviewheight2 // sm:w-minicardwidth sm:h-minicardheight // transition delay-50 rounded-xl shadow-2xl flex flex-row">
+                    <div class="bg-gray-400 mt-3  md:w-cardviewwidth2 md:h-cardviewheight2 // sm:w-minicardwidth sm:h-minicardheight // transition delay-50 rounded-xl shadow-2xl flex flex-row cursor-not-allowed">
 
                         <div class=" w-1/2 h-full flex flex-col">
                             <div class=" w-full h-1/2 px-5 py-3 font-poppins">

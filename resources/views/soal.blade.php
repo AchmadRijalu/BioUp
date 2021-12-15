@@ -20,6 +20,10 @@
                     Keluar
 
                 </button>
+                <button
+                    class="showModalSalah bg-red-700  w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-red-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center">
+                    jawab salah
+                </button>
             </div>
             <div
                 class="h-full mini:mt-4  sm:mt-0 mini:mb-5 sm:m-0 flex flex-row items-center sm:mr-3 bg-white w-48 justify-center rounded-2xl">
@@ -88,13 +92,37 @@
                 Semua jawaban tidak akan tersimpan loh.. :(
             </div>
             <div class="flex justify-end items-center w-100  p-3 mt-2">
-                <button class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1  font-poppins removeModal">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1  font-poppins removeModal">
                     nggak jadi
                 </button>
                 <button class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white mr-1  font-poppins"
                     onclick="location.href='/presoal'">
                     Keluar
                 </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div
+        class="wrongmodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        <div class="bg-greenySecond rounded shadow-lg w-1/3">
+            <div class=" px-4 py-2 flex flex-col justify-center items-center">
+                <img src="{{ asset('image/BioUp! Logo (Transparent).png') }}" alt="" class="w-24 h-24">
+                <h3 class="text-white font-poppins text-3xl font-bold">
+                    Jawaban Anda Salah
+                </h3>
+            </div>
+            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold text-white mt-2">
+                Jawaban :
+            </div>
+            <div class="flex justify-center items-center w-100  p-3 mt-2">
+                <button
+                    class="bg-green-500 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1  font-poppins removewrongmodal">
+                    OKE
+                </button>
+
             </div>
         </div>
     </div>

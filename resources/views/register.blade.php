@@ -20,7 +20,7 @@
                     Daftar Akun
                 </h1>
                 <p class="text-bold opacity-70 ">
-                    Sudah punya akun? <a href="/login" class="font-bold underline  hover:text-green-500">Klik disini</a>
+                    Sudah punya akun? <a href="/" class="font-bold underline  hover:text-green-500">Klik disini</a>
                 </p>
 
                 <form action="{{route('register.store')}}" method="POST">

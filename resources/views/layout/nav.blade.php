@@ -47,54 +47,75 @@
 
     <!-- nav -->
     <nav class="w-full">
-        <a href="{{ route('character.index') }}"
-            class="block font-bold text-xl flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white  hover:text-greeny">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Bermain
-        </a>
-        <a href="/papan"
-            class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-            </svg>
-            Papan Skor
-        </a>
-        <a href="/tentang"
-            class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            Tentang Bio Up!
-        </a>
 
-        @auth
-            <p class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded  hover:text-greeny">
+        <div class="">
+            <a href="{{ route('character.index') }}"
+                class="block font-bold text-xl flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-white  hover:text-greeny">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Bermain
+            </a>
+            <a href="/papan"
+                class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                </svg>
+                Papan Skor
+            </a>
+            <a href="/tentang"
+                class="block py-2.5 px-4 mt-3 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white  hover:text-greeny">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 " fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                Login dengan: {{ auth()->user()->name }}
-
-            </p>
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="items-center flex">
-                    Logout
-                </button>
-            </form>
+                Tentang Bio Up!
             </a>
-        @endauth
+        </div>
+
+        <div class="mt-10 bg-white  flex flex-col w-full rounded-md cursor-default">
+            @auth
+                <div class="flex flex-row justify-start items-center">
+                    <div class=" border-r-2 w-3/4">
+                        <p class="block  py-2.5 px-4 font-bold text-xl flex items-center justify-start rounded text-greeny">
+                            <svg class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            Halo {{ auth()->user()->name }} !
+                        </p>
+                    </div>
+                    <div class="w-1/4  flex flex-row justify-center cursor-pointer animate-ping" id="drop">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-greenySecond" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+
+                </div>
+                <div class="flex flex-row  bg-white py-2.5 px-4 border-t-2 rounded-b-lg w-full h-full hidden" id="logout">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit"
+                            class="items-center flex text-white font-poppins font-semibold bg-greeny hover:bg-red-500 hover:text-white transition delay-75 rounded-lg p-2 w-full h-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                              </svg>
+                            Logout
+                        </button>
+                    </form>
+                </div>
+
+            @endauth
+        </div>
+
 
 
         {{-- <a href="" class="block py-2.5 px-4 font-bold text-xl flex items-center rounded transition duration-200 hover:bg-white hover:text-white">
@@ -102,3 +123,5 @@
         </a> --}}
     </nav>
 </div>
+
+<script src="{{asset('script/drop.js')}}"></script>
