@@ -15,7 +15,7 @@ class CreateSoalsTable extends Migration
     {
         Schema::create('bio12_soals', function (Blueprint $table) {
             $table->id();
-            $table->string("pertanyaan");
+            $table->text("pertanyaan");
             $table->string("imgpath")->nullable();
             $table->string("jawaban");
         });

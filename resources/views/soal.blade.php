@@ -34,7 +34,7 @@
             <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
                 <div class="w-full h-12  font-poppins">
                     <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max">
-                        Nomer : {{ $soalloop->soalID }}
+                        Nomer : {{ $soalloop->id }}
                     </h1>
                 </div>
                 @if ($soalloop->imgpath == null || $soalloop->imgpath == '')

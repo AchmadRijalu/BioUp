@@ -36,7 +36,7 @@
                                     @if (count($userchar) > $count)
                                         Total Skor : {{ $userchar[$count]->score }}
                                     @else
-                                        Terkunci (Butuh {{ $charloop->reqscore }} skor)
+                                        <strong class="font-semibold text-red-500">Terkunci</strong>(Butuh {{ $charloop->reqscore }} skor)
                                     @endif
                                 </p>
                             </div>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="bg-gray-400 mt-3 cursor-pointer md:w-cardviewwidth2 md:h-cardviewheight2 // sm:w-minicardwidth sm:h-minicardheight // transition delay-50 rounded-xl shadow-2xl flex flex-row">
+                    <div class="bg-gray-400 mt-3  md:w-cardviewwidth2 md:h-cardviewheight2 // sm:w-minicardwidth sm:h-minicardheight // transition delay-50 rounded-xl shadow-2xl flex flex-row">
 
                         <div class=" w-1/2 h-full flex flex-col">
                             <div class=" w-full h-1/2 px-5 py-3 font-poppins">
@@ -72,7 +72,7 @@
                                     @if (count($userchar) > $count)
                                         Total Skor : {{ $userchar[$count]->score }}
                                     @else
-                                        Terkunci (Butuh {{ $charloop->reqscore }} skor)
+                                    <strong class="font-semibold text-red-500">Terkunci</strong> (Butuh {{ $charloop->reqscore }} skor)
                                     @endif
                                 </p>
                             </div>
