@@ -10,7 +10,7 @@ class LevelController extends Controller
 {
     public function getSoalByLevel($levelID)
     {
-        $level = Level::where('id', $levelID)->first()->soals;
+        $level = Level::where('id', $levelID)->first()->soals->shuffle();
         return response()->json(['level' => $level]);
     }
 }
