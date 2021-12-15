@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::get('character', [CharacterController::class, 'getAllChara']);
     Route::get('character/{charID}', [CharacterController::class, 'getLevelByChara']);
-    Route::get('character/{charID}/{levelID}', [LevelController::class, 'getSoalByLevel']);
+    Route::get('level/{levelID}', [LevelController::class, 'getSoalByLevel']);
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

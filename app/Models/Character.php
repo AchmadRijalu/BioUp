@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Character extends Model
 {
     use HasFactory;
+    protected $hidden = ['pivot'];
 
     protected $table = 'bio12_characters';
 

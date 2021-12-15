@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
-    public function getLevelByChara($charID)
+    public function getSoalByLevel($levelID)
     {
-        $level = Level::all()->where('charID', $charID);
+        $level = Level::where('id', $levelID)->first()->soals;
         return response()->json(['level' => $level]);
     }
 }
