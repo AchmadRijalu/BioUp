@@ -9,7 +9,6 @@ class Level extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['pivot'];
     protected $table = 'bio12_levels';
 
     public function soals(){

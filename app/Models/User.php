@@ -37,8 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'pivot'
+        'password'
     ];
 
     /**
@@ -66,7 +65,7 @@ class User extends Authenticatable
 
     public function levels()
     {
-        return $this->belongsToMany(Level::class, 'bio12_user_levels');
+        return $this->belongsToMany(Level::class, 'bio12_user_levels')->withPivot('score');
     }
 
     // public function character() //untuk table bio12_user_characters

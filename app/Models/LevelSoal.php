@@ -9,6 +9,5 @@ class LevelSoal extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['pivot'];
     protected $table = 'bio12_level_soals';
 }

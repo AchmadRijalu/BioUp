@@ -26,10 +26,10 @@ class Character extends Model
     //     return $this->belongsToMany(User::class, 'bio12_user_levels')->withPivot('levelID');
     // }
 
-    // public function levels()
-    // {
-    //     return $this->belongsToMany(Level::class, 'bio12_user_levels')->withPivot('userID');
-    // }
+    public function levels1()
+    {
+        return $this->belongsToMany(Level::class, 'bio12_user_levels')->withPivot('score');
+    }
 
     // public function user() //untuk table bio12_user_characters
     // {
