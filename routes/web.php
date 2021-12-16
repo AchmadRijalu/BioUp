@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CharController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -31,11 +32,11 @@ Route::resource('character', CharController::class)->middleware('auth');
 
 Route::resource('soal', SoalController::class)->middleware('auth');
 
+Route::resource('level', LevelController::class)->middleware('auth');
 
-
-Route::get('/level', function () {
-    return view('level');
-})->middleware('auth');
+// Route::get('/level', function () {
+//     return view('level');
+// })
 
 Route::get('/tentang', function () {
     return view('tentang');

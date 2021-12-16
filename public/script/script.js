@@ -2,18 +2,10 @@ const btn = document.querySelector(".mobile-menu-button");
 const sidebar = document.querySelector(".sidebar");
 
 // add our event listener for the click
+
+
+
 btn.addEventListener("click", () => {
-  sidebar.classList.toggle("-translate-x-full");
+    sidebar.classList.toggle("-translate-x-full");
+    console.log('ini tombol')
 });
-
-
-function playAudio(url) {
-    new Audio(url).play();
-  }
-
-
-
-
-
-
-

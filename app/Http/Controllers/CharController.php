@@ -62,6 +62,9 @@ class CharController extends Controller
     public function show($id)
     {
         //
+        $char = Character::findorfail($id);
+
+        return view('level', compact('char'));
     }
 
     /**

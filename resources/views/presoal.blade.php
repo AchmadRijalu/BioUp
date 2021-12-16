@@ -62,8 +62,8 @@
             </div>
             <div class="w-full flex flex-row justify-center mt-7">
                 <button
-                    class="bg-green-500 animate-bounce mt-4 w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-2xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
-                    onclick="location.href='{{route('soal.index')}}'">
+                    class="soalbuttonconfirmation bg-green-500 animate-bounce mt-4 w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-2xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
+                    onclick="location.href='{{route('soal.index')}}'" >
                     Mulai
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -75,6 +75,29 @@
         </div>
 
     </div>
+    {{-- <div
+        class="soalmodalconfirmation  mini:h-screen mini:w-full fixed left-0 top-0 mini:flex mini:justify-center mini:items-center bg-black bg-opacity-75 mini:hidden">
+        <div class="bg-greenySecond rounded shadow-lg  mini:w-max mini:h-max">
+            <div class=" mini:px-5 mini:py-5 flex flex-col justify-center items-center ">
+                <img src="{{ asset('image/BioUp! Logo (Transparent).png') }}" alt="" class="w-24 h-24">
+                <h3 class="text-white font-poppins md:text-2xl mini:text-lg font-bold">
+                    Apakah yakin untuk memulai?
+                </h3>
+            </div>
 
+            <div class="flex justify-center items-center w-100  p-3 mt-2">
+                <button
+                    class="bg-green-500 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1  font-poppins removewrongmodal" onclick="location.href='{{route('soal.index')}}'">
+                    mulai
+                </button>
 
+            </div>
+        </div>
+    </div> --}}
+
+    {{-- <script src="{{ asset('script/confirmation.js') }}">
+
+    </script> --}}
 @endsection
+
+
