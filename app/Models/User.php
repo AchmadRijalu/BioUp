@@ -56,7 +56,7 @@ class User extends Authenticatable
     // }
 
     public function characters(){
-        return $this->belongsToMany(Character::class, 'bio12_user_characters');
+        return $this->belongsToMany(Character::class, 'bio12_user_characters')->withPivot('score');
     }
 
     // public function characters() //untuk table bio12_user_levels
@@ -64,17 +64,17 @@ class User extends Authenticatable
     //     return $this->belongsToMany(Character::class, 'bio12_user_levels')->withPivot('levelID');
     // }
 
-    // public function levels()
-    // {
-    //     return $this->belongsToMany(Level::class, 'bio12_user_levels')->withPivot('charID');
-    // }
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class, 'bio12_user_levels');
+    }
 
     // public function character() //untuk table bio12_user_characters
     // {
     //     return $this->belongsToMany(Character::class, 'bio12_user_characters')->withPivot('userID');
     // }
-    // public function leaderboard()
-    // {
-    //     return $this->belongsTo(leaderboard::class, 'userID');
-    // }
+    public function leaderboard()
+    {
+        return $this->belongsTo(leaderboard::class, 'user_id');
+    }
 }

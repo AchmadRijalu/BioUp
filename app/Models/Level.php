@@ -17,13 +17,13 @@ class Level extends Model
     }
 
     public function char(){
-        return $this->belongsTo(Char::class);
+        return $this->belongsTo(Character::class);
     }
 
-    // public function users()
-    // {
-    //     return $this->belongsToMany(User::class, 'bio12_user_levels')->withPivot('charID');
-    // }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'bio12_user_levels')->withPivot('score');
+    }
 
     // public function characters() //untuk many to many
     // {

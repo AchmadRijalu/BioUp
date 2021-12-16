@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Character extends Model
 {
     use HasFactory;
-    protected $hidden = ['pivot'];
 
     protected $table = 'bio12_characters';
 
     public $timestamps = false;
 
     public function users(){
-        return $this->belongsToMany(User::class, 'bio12_user_characters');
+        return $this->belongsToMany(User::class, 'bio12_user_characters')->withPivot('score');
     }
 
     public function levels(){

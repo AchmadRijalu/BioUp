@@ -13,6 +13,6 @@ class leaderboard extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'userID');
+        return $this->hasMany(User::class);
     }
 }
