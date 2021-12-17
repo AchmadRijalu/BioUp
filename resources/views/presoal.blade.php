@@ -17,7 +17,7 @@
             </div>
             <div class="mini:mt-5 sm:mt-0 mini:flex mini:flex-row mini:items-center sm:h-full sm:mr-5">
                 <h1 class="font-bold text-center text-4xl">
-                    Skor : 100
+                    Skor : {{$presoal->users->}}
                 </h1>
             </div>
         </div>
