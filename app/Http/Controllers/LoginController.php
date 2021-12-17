@@ -89,6 +89,9 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+        if(Auth::id() != null){
+            return redirect()->intended(route('character.index'));
+        }
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();

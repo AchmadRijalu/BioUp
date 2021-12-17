@@ -83,8 +83,10 @@
                 </div>
                 <div class="mt-8 w-100 mt-4 flex flex-column justify-between">
                     <p>
-                        <a href="" class="text-black opacity-40">Lupa Password?</a>
+                        &nbsp;
+
                     </p>
+
                     <button
                         class="bg-green-500 w-40 h-12 text-2xl border-2  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center">
                         Login

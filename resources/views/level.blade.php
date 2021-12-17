@@ -31,47 +31,25 @@
             </h1>
 
             @foreach ($char->levels as $levelsloop)
-                <button
-                    class="w-levelbutton shadow-xl h-minimobileheight drop-shadow-lg text-xl bg-white text-black rounded-lg mt-7 font-poppins font-medium hover:bg-second transition delay-50 duration-300 ease-in-out
-             "
-                    onclick="location.href='/presoal'">
-                    @if ($levelsloop->id == 1 )
-                        Mudah
-                    @elseif($levelsloop->id == 2 )
-                    Sedang
-                    @elseif($levelsloop->id == 3 )
-                    Sulit
-                    @elseif($levelsloop->id == 4 )
-                    Mudah
-                    @elseif($levelsloop->id == 5 )
-                    Sedang
-                    @elseif($levelsloop->id == 6 )
-                    Sulit
-                    @elseif($levelsloop->id == 7 )
-                    Mudah
-                    @elseif($levelsloop->id == 8 )
-                    Sedang
-                    @elseif($levelsloop->id == 9 )
-                    Sulit
-                    @elseif($levelsloop->id == 10 )
-                    Mudah
-                    @elseif($levelsloop->id == 11 )
-                    Sedang
-                    @elseif($levelsloop->id == 12 )
-                    Sulit
-                    @elseif($levelsloop->id == 13 )
-                    Mudah
-                    @elseif($levelsloop->id == 14 )
-                    Sedang
-                    @elseif($levelsloop->id == 15 )
-                    Sulit
-                    @elseif($levelsloop->id == 16 )
-                    Final
+                <form action="{{ route('level.show', $levelsloop) }}" method="GET">
+                    <button
+                        class="w-levelbutton shadow-xl h-minimobileheight drop-shadow-lg text-xl bg-white text-black rounded-lg mt-7 font-poppins font-medium hover:bg-second transition delay-50 duration-300 ease-in-out
+         "
+                        type="submit">
+                        @if ($loop->index == 0)
+                            Mudah
+                        @elseif($loop->index == 1 )
+                            Sedang
+                        @elseif($loop->index == 2 )
+                            Sulit
+                        @elseif($levelsloop->id == 16 )
+                            Final
+                        @endif
+
+                    </button>
+                </form>
 
 
-                    @endif
-
-                </button>
             @endforeach
 
             {{-- <button

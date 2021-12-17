@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.q
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,6 +49,13 @@ class LevelController extends Controller
     public function show($id)
     {
         //
+        $presoal = Level::findorfail($id);
+        $presoalcount = Level::findorfail($id)->soals->count();
+        $char = Character::findorfail($presoal->character_id);
+
+        return view('presoal', compact('presoal','char'));
+
+
     }
 
     /**

@@ -97,7 +97,7 @@
                     nggak jadi
                 </button>
                 <button class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white mr-1  font-poppins"
-                    onclick="location.href='/presoal'">
+                    onclick="location.href='{{route('character.index')}}'">
                     Keluar
                 </button>
             </div>
