@@ -24,7 +24,7 @@ class CharacterController extends Controller
 
     public function getLevelByChara($charID)
     {
-        $chara = Character::where('id', $charID)->first()->levels1;
+        $chara = User::where('id',Auth::id())->first()->levels->where('character_id',$charID);
         return response(['levels'=>$chara]);
     }
 
@@ -61,6 +61,12 @@ class CharacterController extends Controller
                             'updated_at' => Carbon::now()
                         ]);
                     }
+                    DB::table('bio12_leaderboards')->insert([
+                        'user_id'=>Auth::id(),
+                        'totalscore'=>0,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]);
                 }else{
                     for ($i = 1; $i <=3; $i++) {
                         DB::table('bio12_user_levels')->insert([
