@@ -53,8 +53,11 @@ class LevelController extends Controller
         $presoalcount = Level::findorfail($id)->soals->count();
         $char = Character::findorfail($presoal->character_id);
 
-        return view('presoal', compact('presoal','char'));
-
+        if($presoal->users->first() == null){
+            return redirect('/character');
+        } else {
+            return view('presoal', compact('presoal','char'));
+        }
 
     }
 

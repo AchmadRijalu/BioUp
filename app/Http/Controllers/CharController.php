@@ -78,8 +78,14 @@ class CharController extends Controller
     {
         //
         $char = Character::findorfail($id);
+        $uc = UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first();
+        // dd($uc);
+        if(UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first() == null){
+            return redirect('/character');
+        } else {
+            return view('level', compact('char'));
+        }
 
-        return view('level', compact('char'));
     }
 
     /**
