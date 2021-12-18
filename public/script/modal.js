@@ -26,18 +26,20 @@ const tombol = document.querySelector('.tombol');
 
 
 
-
+removeModal.addEventListener('click', function () {
+    modal.classList.add('hidden');
+});
 showModal.addEventListener('click', function () {
     modal.classList.remove('hidden');
 
 });
-showModalSalah.addEventListener('click', function () {
-    wrongmodal.classList.remove('hidden');
-})
 
-removeModal.addEventListener('click', function () {
-    modal.classList.add('hidden');
-});
+
+// showModalSalah.addEventListener('click', function () {
+//     wrongmodal.classList.remove('hidden');
+// });
+
+
 
 removeWrongmodal.addEventListener('click', function () {
     wrongmodal.classList.add('hidden');

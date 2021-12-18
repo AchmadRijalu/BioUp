@@ -72,13 +72,13 @@
                 <div class="mt-12 w-80 ">
                     {{-- <label for="email" class="text-greeny">Username</label><br> --}}
                     <input type="text" name="email" value="" autofocus required
-                        class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-full focus transition delay-200 font-weight-bold  focus:ring-green-600 text-green-500"
+                        class=" font-poppins border-4 focus:shadow-outline focus:outline-none border-green-400 font-bold rounded-xl h-10 w-full focus transition delay-200 font-weight-bold  focus:ring-green-600 text-green-500"
                         placeholder="email">
                 </div>
                 <div class="mt-3 w-80 mt-4">
                     {{-- <label for="email">Password</label><br> --}}
                     <input type="password" name="password" value=""
-                        class=" font-poppins border-4 border-green-400 rounded-xl h-10 w-full font-bold"
+                        class=" font-poppins border-4 focus:shadow-outline focus:outline-none border-green-400 rounded-xl h-10 w-full font-bold"
                         placeholder="Password">
                 </div>
                 <div class="mt-8 w-100 mt-4 flex flex-column justify-between">

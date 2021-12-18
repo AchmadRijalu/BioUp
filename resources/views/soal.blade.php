@@ -107,7 +107,7 @@
                 </h3>
             </div>
             <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold text-white mt-2">
-                Jawaban :
+                <p id="jawabanasli">Jawaban : </p>
             </div>
             <div class="flex justify-center items-center w-100  p-3 mt-2">
                 <button
@@ -130,6 +130,8 @@
     const jawaban = document.getElementById("jawaban");
     const gambarsoal = document.getElementById("gambarsoal");
     const pressed = document.getElementById("pressed");
+    const jawabanasli = document.getElementById("jawabanasli");
+
     let currentindex;
     debug();
 
@@ -166,6 +168,7 @@
                 counter++
                 if (counter < soalobject.length) {
                     wrongmodal.classList.remove('hidden');
+                    jawabanasli.innerText = "Jawaban : " +currentindex.jawaban;
                     debug();
                 } else {
                     alert("INDEX HABIS!");
