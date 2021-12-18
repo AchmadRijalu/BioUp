@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bermain!</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 </head>
 
 <body>
@@ -20,10 +21,7 @@
                     Keluar
 
                 </button>
-                <button
-                    class="showModalSalah bg-red-700  w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-red-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center">
-                    jawab salah
-                </button>
+
             </div>
             <div
                 class="h-full mini:mt-4  sm:mt-0 mini:mb-5 sm:m-0 flex flex-row items-center sm:mr-3 bg-white w-48 justify-center rounded-2xl">
@@ -34,46 +32,40 @@
             </div>
         </div>
 
-        @foreach ($soal as $soalloop)
-            <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
-                <div class="w-full h-12  font-poppins">
-                    <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max">
-                        Nomer : {{ $soalloop->id }}
-                    </h1>
-                </div>
-                @if ($soalloop->imgpath == null || $soalloop->imgpath == '')
-                    <img src="{{ $soalloop->imgpath }}" alt="" class="hidden">
-                @else
-                    <img src="{{ $soalloop->imgpath }}" alt="" class="w-96 h-80">
-                @endif
+        <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
+            <div class="w-full h-12  font-poppins">
+                <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max" id="nomer">
+                    Nomer :
+                </h1>
+            </div>
 
+            <img src="" alt="" class="w-96 h-80 hidden" id="gambarsoal">
 
-                <div class="w-full bg-white p-7 font-poppins text-2xl font-medium rounded-2xl mt-7">
-                    <p>
-                        {{ $soalloop->pertanyaan }}
+            <div class="w-full bg-white p-7 font-poppins text-2xl font-medium rounded-2xl mt-7">
+                <p id="pertanyaan">
+                    pertanyaan
 
-                    </p>
-                    <p class="hidden">
-                        {{ $soalloop->jawaban }}
-                    </p>
-                </div>
+                </p>
 
             </div>
-        @endforeach
 
-        <div class="bg-white w-3/4 h-12 p-3  mt-2 flex flex-row items-center rounded-2xl ">
-            <input type="text" name="" value="" placeholder="Jawab Disini"
-                class="  w-full
-             text-2xl font-medium font-poppins">
         </div>
-        <div class=" mt-5 p-4">
+        {{-- ISI JAWABAN --}}
+        <div class="bg-white w-3/4 h-12 p-3  mt-2 flex flex-row items-center rounded-2xl ">
+            <input type="text" name="jawaban" id="jawaban" value="" placeholder="Jawab Disini" autocomplete="off"
+                class="  w-full
+                         text-2xl font-medium font-poppins focus:outline-none focus:shadow-outline focus:border-blue-300">
+        </div>
+        <div class=" mt-5 p-4 ">
             <button
-                class="bg-green-700  w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
-                onclick="location.href='/presoal'">
+                class="bg-green-700 tombol w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center
+                        "
+                id="pressed">
                 Konfirm
 
             </button>
         </div>
+
     </div>
 
 
@@ -97,7 +89,7 @@
                     nggak jadi
                 </button>
                 <button class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white mr-1  font-poppins"
-                    onclick="location.href='{{route('character.index')}}'">
+                    onclick="location.href='{{ route('character.index') }}'">
                     Keluar
                 </button>
             </div>
@@ -127,32 +119,78 @@
         </div>
     </div>
 
-    {{-- ini adalah format div soal
-
-         {{-- <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
-            <div class="w-full h-12  font-poppins">
-                <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max">
-                    Nomer : 1
-                </h1>
-            </div>
-            <img src="{{ asset('imageSoal/Soal 2.png') }}" alt="" class="w-96 h-80">
-
-            <div class="w-full bg-white p-7 font-poppins text-2xl font-medium rounded-2xl mt-7">
-                <p>
-                    Perhatikan gambar batang dikotil berikut! Yang merupakan titik tumbuh sekunder pada gambar tersebut
-                    adalah nomor…. (Gunakan "dan" jika terdapat 2 jawaban)
-
-                </p>
-            </div>
-
-        </div> --}}
-
-
-
-
 </body>
-<script src="{{ asset('script/modal.js') }}">
+<script src="{{ asset('script/modal.js') }}"></script>
 
+<script>
+    var soalobject = @json($getsoal);
+    let counter = 0;
+    const nomer = document.getElementById("nomer");
+    const pertanyaan = document.getElementById("pertanyaan");
+    const jawaban = document.getElementById("jawaban");
+    const gambarsoal = document.getElementById("gambarsoal");
+    const pressed = document.getElementById("pressed");
+    let currentindex;
+    debug();
+
+    function debug() {
+
+        nomer.innerText = "Nomer : " + (counter+1);
+        currentindex = soalobject[counter];
+        if(currentindex.imgpath){
+            gambarsoal.classList.remove('hidden');
+            gambarsoal.src = "http://bioup.test/" + currentindex.imgpath;
+        } else if(!currentindex.imgpath) {
+            gambarsoal.classList.add('hidden');
+        }
+        pertanyaan.innerText = currentindex.pertanyaan;
+        jawaban.value = "";
+
+    };
+
+    pressed.addEventListener('click', function() {
+
+        if (!jawaban.value) {
+            alert("jawaban tidak boleh kosong");
+        } else if (jawaban.value) {
+            const check = jawaban.value.replace(/\s+/g,'').toLowerCase();
+            if (check == (currentindex.jawaban.replace(/\s+/g,'').toLowerCase())) {
+                counter++
+                if (counter < soalobject.length) {
+                    // jawaban.value = "";
+                    debug();
+                } else {
+                    alert("INDEX HABIS!");
+                }
+            } else {
+                counter++
+                if (counter < soalobject.length) {
+                    wrongmodal.classList.remove('hidden');
+                    debug();
+                } else {
+                    alert("INDEX HABIS!");
+                }
+            }
+        }
+
+        // if (!jawaban.value) {
+        //     alert("jawaban tidak boleh kosong");
+
+        // } else if (jawaban.value = currentindex.jawaban) {
+        //     counter++;
+        //     if (counter < soalobject.length) {
+        //         debug();
+        //     } else {
+        //         alert("INDEX HABIS");
+        //     };
+        // } else {
+        //     alert("Jawaban salah");
+        // }
+
+    });
+    // function pressed() {
+    //
 </script>
+
 
 </html>

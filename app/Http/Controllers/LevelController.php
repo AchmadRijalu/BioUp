@@ -49,6 +49,7 @@ class LevelController extends Controller
     public function show($id)
     {
         //
+
         $presoal = Level::findorfail($id);
         $presoalcount = Level::findorfail($id)->soals->count();
         $char = Character::findorfail($presoal->character_id);

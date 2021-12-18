@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Soal;
+use App\Models\Level;
+use App\Models\LevelSoal;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class SoalController extends Controller
 {
@@ -16,6 +19,7 @@ class SoalController extends Controller
     {
         //
         $soal = Soal::all();
+
 
         return view('soal', compact('soal'));
     }
@@ -50,6 +54,10 @@ class SoalController extends Controller
     public function show($id)
     {
         //
+        $getsoal = Level::findorfail($id)->soals->shuffle();
+        $size = sizeof(Level::findorfail($id)->soals->shuffle());
+
+        return view('soal', compact('getsoal', 'size'));
     }
 
     /**
@@ -73,6 +81,15 @@ class SoalController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $shift = Soal::findorfail($id);
+        $jawaban = strtolower(str_replace(' ', '', Soal::findorfail($id)->jawaban));
+        $jawabanuser = strtolower(str_replace(' ', '', $request->jawaban));
+        if ($jawaban == $jawabanuser) {
+            dd('benar');
+        }
+        else {
+            dd('salah');
+        }
     }
 
     /**
@@ -84,5 +101,10 @@ class SoalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check(Request $request,$id)
+    {
+
     }
 }

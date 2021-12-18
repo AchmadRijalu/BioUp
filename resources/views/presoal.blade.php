@@ -17,7 +17,7 @@
             </div>
             <div class="mini:mt-5 sm:mt-0 mini:flex mini:flex-row mini:items-center sm:h-full sm:mr-5">
                 <h1 class="font-bold text-center text-4xl">
-                    Skor : {{$presoal->users->first()->pivot->score}}
+                    Skor : {{ $presoal->users->first()->pivot->score }}
                 </h1>
             </div>
         </div>
@@ -27,11 +27,11 @@
             <h1 class="text-white font-poppins font-bold text-4xl">
                 Level : @if ($presoal->id % 3 == 1)
                     Mudah
-                    @elseif ($presoal->id %3 ==2)
+                @elseif ($presoal->id %3 ==2)
                     Sedang
-                    @elseif ($presoal->id %3 == 0)
+                @elseif ($presoal->id %3 == 0)
                     Sulit
-                    @elseif ($presoal->id == 16)
+                @elseif ($presoal->id == 16)
                     Final
                 @endif
 
@@ -51,7 +51,19 @@
 
                     <div class="w-full h-full  flex flex-col items-center">
                         <h1 class="text-black font-medium text-2xl sm:mt-24 mini:mt-12 text-center">
-                            - Pertumbuhan dan Perkecambahan
+                             @if ($char->id == 1)
+                             Pertumbuhan dan Perkembangan
+                             @elseif ($char->id == 2)
+                             Metabolisme
+                             @elseif ($char->id == 3)
+                             Hereditas
+                             @elseif ($char->id == 4)
+                             Teori Evolusi
+                             @elseif ($char->id == 5)
+                             Bioteknologi
+                             @elseif ($char->id == 6)
+                             Ujian Akhir
+                            @endif
                         </h1>
                     </div>
 
@@ -64,7 +76,7 @@
                     </div>
                     <div class="w-full h-full  flex flex-col items-center">
                         <h1 class="text-black font-medium text-7xl sm:mt-24 mini:mt-12">
-                            {{$presoal->soals->count()}}
+                            {{ $presoal->soals->count() }}
                         </h1>
                     </div>
                 </div>
@@ -73,7 +85,8 @@
             <div class="w-full flex flex-row justify-center mt-7">
                 <button
                     class="soalbuttonconfirmation bg-green-500 animate-bounce mt-4 w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-2xl text-white font-bold active:bg-green-700 hover:bg-green-400 transition delay-50 font-poppins  flex justify-content-center justify-center items-center"
-                    onclick="location.href='{{ route('soal.index') }}'">
+                    onclick="location.href='{{ route('soal.show',$presoal->id) }}'">
+
                     Mulai
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
