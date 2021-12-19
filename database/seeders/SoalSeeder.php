@@ -130,7 +130,7 @@ class SoalSeeder extends Seeder
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Perhatikan gambar batang dikotil berikut! Yang merupakan titik tumbuh sekunder pada gambar tersebut
             adalah nomor…. (Gunakan "dan" jika terdapat 2 jawaban)',
-            'imgpath' => '/imageSoal/Soal 2.png',
+            'imgpath' => 'imageSoal/Soal 2.png',
             'jawaban' => '4',
         ]);
         DB::table('bio12_soals')->insert([
@@ -170,12 +170,12 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Pertumbuhan memanjang pada ujung-ujung tumbuhan disebut Pertumbuhan ...',
-            'imgpath' => '/imageSoal/Soal 4.jpg',
+            'imgpath' => 'imageSoal/Soal 4.jpg',
             'jawaban' => 'primer',
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Dari gambar tersebut bagian nomor 1 dan 4 sesuai keterangan gambarnya adalah….. (Gunakan "dan" jika terdapat 2 jawaban)',
-            'imgpath' => '/imageSoal/Soal 3.png',
+            'imgpath' => 'imageSoal/Soal 3.png',
             'jawaban' => 'embrio dan kotiledon',
         ]);
         DB::table('bio12_soals')->insert([
@@ -233,7 +233,7 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Peristiwa yang ditunjukkan oleh huruf X adalah....',
-            'imgpath' => '/imageSoal/Soal 5.png',
+            'imgpath' => 'imageSoal/Soal 5.png',
             'jawaban' => 'glikolisis',
         ]);
         DB::table('bio12_soals')->insert([
@@ -460,7 +460,7 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Gambar diatas merupakan gambaran dari ...',
-            'imgpath' => '/imageSoal/Soal 6.jpg',
+            'imgpath' => 'imageSoal/Soal 6.jpg',
             'jawaban' => 'siklus krebs',
         ]);
         DB::table('bio12_soals')->insert([
@@ -645,12 +645,12 @@ class SoalSeeder extends Seeder
 
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Kemungkinan anaknya menderita albino adalah ... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 7.jpg',
+            'imgpath' => 'imageSoal/Soal 7.jpg',
             'jawaban' => '25',
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Berapakah kemungkinan keturunannya yang berfenotip normal? ... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 8.jpeg',
+            'imgpath' => 'imageSoal/Soal 8.jpeg',
             'jawaban' => '75',
         ]);
         DB::table('bio12_soals')->insert([
@@ -660,12 +660,12 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Jika pial sumpel disilangkan dengan pial bilah maka keturunan yang berpial biji adalah.... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 9.jpg',
+            'imgpath' => 'imageSoal/Soal 9.jpg',
             'jawaban' => '25',
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Jika wanita Thalasemia minor menikah dengan laki-laki normal, berapa persen anak-anaknya akan memiliki sifat normal?.... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 10.jpg',
+            'imgpath' => 'imageSoal/Soal 10.jpg',
             'jawaban' => '50',
         ]);
         DB::table('bio12_soals')->insert([
@@ -780,7 +780,7 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Berdasarkan bagan tersebut, genotif individu (1) dan (2) adalah...  dan... (gunakan ","/koma untuk memisahkan 2 jawaban) ',
-            'imgpath' => '/imageSoal/Soal 11.jpg',
+            'imgpath' => 'imageSoal/Soal 11.jpg',
             'jawaban' => 'XX,XY',
         ]);
         DB::table('bio12_soals')->insert([
@@ -898,7 +898,7 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Orang yang merupakan pembawa sifat hemofili adalah … (gunakan "dan" untuk memisahkan jawaban)',
-            'imgpath' => '/imageSoal/Soal 12.jpg',
+            'imgpath' => 'imageSoal/Soal 12.jpg',
             'jawaban' => '4 dan 8',
         ]);
         DB::table('bio12_soals')->insert([
@@ -913,12 +913,12 @@ class SoalSeeder extends Seeder
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Berapakah kemungkinan keturunannya yang berfenotipe normal? .... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 13.jpg',
+            'imgpath' => 'imageSoal/Soal 13.jpg',
             'jawaban' => '75',
         ]);
         DB::table('bio12_soals')->insert([
             'pertanyaan' => 'Bunga kacang Lathyrus odoratus warna putih (CCpp) yang disilangkan dengan Lathyrus odoratus yang berwarna putih (ccPP) menghasilkan bunga kacang warna ungu (F1). Jika F1 disilangkan dengan induknya (CCpp), terdapat bunga warna putih sebanyak ... % (dalam angka)',
-            'imgpath' => '/imageSoal/Soal 14.jpg',
+            'imgpath' => 'imageSoal/Soal 14.jpg',
             'jawaban' => '50',
         ]);
         DB::table('bio12_soals')->insert([
