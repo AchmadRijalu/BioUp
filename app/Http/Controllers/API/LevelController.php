@@ -22,15 +22,31 @@ class LevelController extends Controller
     public function upScore(Request $request)
     {
         $tempscore = $request->score;
-        $highscore = User::where('id', Auth::id())->first()->levels->where('id', $request->levelID)->first()->pivot->score;
+        $levelID = $request->levelID;
+        if ($tempscore > 100) {
+            $accessToken = Auth::user()->token();
+            DB::table('oauth_refresh_tokens')->where('access_token_id', $accessToken->id)->update(['revoked' => true]);
+            $accessToken->revoke();
+            $user = User::where('id', Auth::id())->first();
+            $user->update([
+                'is_active' => '0'
+            ]);
+        } else {
+            $this->scoreproccess($tempscore, $levelID);
+        }
+    }
+
+    private function scoreproccess($tempscore, $levelID)
+    {
+        $highscore = User::where('id', Auth::id())->first()->levels->where('id', $levelID)->first()->pivot->score;
         if ($tempscore > $highscore) {
-            DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('level_id', '=', $request->levelID)->update([
+            DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('level_id', '=', $levelID)->update([
                 'score' => $tempscore,
                 'updated_at' => Carbon::now()
             ]);
         }
-        $accumulate = User::where('id', Auth::id())->first()->levels;
-        $charID = User::where('id', Auth::id())->first()->levels->where('id', $request->levelID)->first()->character_id;
+        $charID = User::where('id', Auth::id())->first()->levels->where('id', $levelID)->first()->character_id;
+        $accumulate = User::where('id', Auth::id())->first()->levels->where('character_id', $charID);
         $total_score = 0;
         foreach ($accumulate as $score) {
             $total_score += $score->pivot->score;
@@ -43,7 +59,7 @@ class LevelController extends Controller
             ]);
         }
         $accumulate2 = User::where('id', Auth::id())->first()->characters;
-        $total_score2 =0;
+        $total_score2 = 0;
         foreach ($accumulate2 as $score) {
             $total_score2 += $score->pivot->score;
         }

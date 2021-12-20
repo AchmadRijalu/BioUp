@@ -3,10 +3,9 @@
 use App\Http\Controllers\API\Auth\LoginController;
 use App\Http\Controllers\API\Auth\RegisterController;
 use App\Http\Controllers\API\CharacterController;
+use App\Http\Controllers\API\LeaderboardController;
 use App\Http\Controllers\API\LevelController;
-use App\Models\Level;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +28,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('character/{charID}', [CharacterController::class, 'getLevelByChara']);
     Route::get('level/{levelID}', [LevelController::class, 'getSoalByLevel']);
     Route::post('level/upscore', [LevelController::class, 'upScore']);
+    Route::get('leaderboard', [LeaderboardController::class, 'getLeaderboard']);
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

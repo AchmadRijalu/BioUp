@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Character;
-use App\Models\Level;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +23,9 @@ class CharacterController extends Controller
 
     public function getLevelByChara($charID)
     {
-        $chara = User::where('id',Auth::id())->first()->levels->where('character_id',$charID);
-        return response(['levels'=>$chara]);
+        $chara = DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('character_id', '=', $charID)->select('level_id', 'character_id', 'user_id', 'score')->get();
+        // User::where('id',Auth::id())->first()->levels->where('character_id',$charID);
+        return response()->json(['levels' => $chara]);
     }
 
     private function addCharaByScore() //menambahkan data ke tabel user_characters dan user_levels secara otomatis
@@ -50,7 +50,7 @@ class CharacterController extends Controller
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
-                if ($loop == 1){
+                if ($loop == 1) {
                     for ($i = 0; $i < 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
                             'level_id' => $loop1++,
@@ -62,15 +62,15 @@ class CharacterController extends Controller
                         ]);
                     }
                     DB::table('bio12_leaderboards')->insert([
-                        'user_id'=>Auth::id(),
-                        'totalscore'=>0,
+                        'user_id' => Auth::id(),
+                        'totalscore' => 0,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now()
                     ]);
-                }else{
-                    for ($i = 1; $i <=3; $i++) {
+                } else {
+                    for ($i = 1; $i <= 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
-                            'level_id' =>$loop1++,
+                            'level_id' => $loop1++,
                             'character_id' => $loop,
                             'user_id' => Auth::id(),
                             'score' => 0,
@@ -79,7 +79,7 @@ class CharacterController extends Controller
                         ]);
                     }
                 }
-                if ($loop == 6){
+                if ($loop == 6) {
                     DB::table('bio12_user_levels')->insert([
                         'level_id' => 16,
                         'character_id' => $loop,
@@ -90,7 +90,7 @@ class CharacterController extends Controller
                     ]);
                 }
             }
-            $loop1+=3;
+            $loop1 += 3;
             $loop++;
         }
     }
