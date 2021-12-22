@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
 class LeaderboardController extends Controller
 {
     public function getLeaderboard(){
-        $user = User::where('id',Auth::id())->first()->id;
+        $user = Auth::id();
         $allleaderboard = leaderboard::all()->sortBy([
             ['totalscore', 'desc'],
             ['updated_at', 'desc']
         ])->take(100);
-        $alluser= DB::table('users')->select('id','username')->limit(100)->get();
+        $alluser= DB::table('users')->select('id','username')->get();
         return response()->json(['user' => $user,'leaderboards' => $allleaderboard, 'allusers' => $alluser]);
     }
 }
