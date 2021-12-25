@@ -77,13 +77,15 @@ class CharController extends Controller
     public function show($id)
     {
         //
+        // $levelchar = Character::findorfail($id)->levels->where('user_id', Auth::id());
+        $levelchar = DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('character_id', '=', $id)->select('level_id', 'user_id')->get();
         $char = Character::findorfail($id);
         $uc = UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first();
         // dd($uc);
         if(UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first() == null){
             return redirect('/character');
         } else {
-            return view('level', compact('char'));
+            return view('level', compact('char', 'levelchar'));
         }
 
     }

@@ -30,8 +30,8 @@
                 Pilih Level
             </h1>
 
-            @foreach ($char->levels as $levelsloop)
-                <form action="{{ route('level.show', $levelsloop) }}" method="GET">
+            @foreach ($levelchar as $levelsloop)
+                <form action="{{ route('level.show', $levelsloop->level_id) }}" method="GET">
                     <button
                         class="w-levelbutton shadow-xl h-minimobileheight drop-shadow-lg text-xl bg-white text-black rounded-lg mt-7 font-poppins font-medium hover:bg-second transition delay-50 duration-300 ease-in-out
          "
