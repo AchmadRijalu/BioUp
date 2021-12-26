@@ -17,7 +17,7 @@ class LeaderboardController extends Controller
             ['totalscore', 'desc'],
             ['updated_at', 'desc']
         ])->take(100);
-        $alluser= DB::table('users')->select('id','username')->get();
+        $alluser= DB::table('users')->orderBy('id')->select('id','username')->get();
         return response()->json(['user' => $user,'leaderboards' => $allleaderboard, 'allusers' => $alluser]);
     }
 }
