@@ -16,9 +16,12 @@
 
             </div>
             <div class="mini:mt-5 sm:mt-0 mini:flex mini:flex-row mini:items-center sm:h-full sm:mr-5">
+                @foreach ( $presoalscore as $scorevalue )
                 <h1 class="font-bold text-center text-4xl">
-                    Skor : {{ $presoal->users->first()->pivot->score }}
-                </h1>
+                   Nilai : {{$scorevalue->score}}
+               </h1>
+                @endforeach
+
             </div>
         </div>
     </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
 use App\Models\Level;
+use App\Models\Character;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LevelController extends Controller
 {
@@ -51,13 +53,15 @@ class LevelController extends Controller
         //
 
         $presoal = Level::findorfail($id);
+        $presoalscore = DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('level_id', '=', $id)->select('score')->get();
+        // $presoalscore = $presoal->users->value('score');
         $presoalcount = Level::findorfail($id)->soals->count();
         $char = Character::findorfail($presoal->character_id);
 
         if($presoal->users->first() == null){
             return redirect('/character');
         } else {
-            return view('presoal', compact('presoal','char'));
+            return view('presoal', compact('presoal','char', 'presoalscore'));
         }
 
     }

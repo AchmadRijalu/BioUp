@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Soal;
 use App\Models\Level;
 use App\Models\LevelSoal;
@@ -54,10 +55,12 @@ class SoalController extends Controller
     public function show($id)
     {
         //
+        $level = Level::findorfail($id);
         $getsoal = Level::findorfail($id)->soals->shuffle();
+        $gethealth = Character::findorfail($level->character_id);
         $size = sizeof(Level::findorfail($id)->soals->shuffle());
 
-        return view('soal', compact('getsoal', 'size'));
+        return view('soal', compact('getsoal', 'size', 'gethealth'));
     }
 
     /**

@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="bg-greenySecond w-full min-h-screen flex flex-col items-center p-4">
         <div
             class="w-full sm:h-20 bg-greenySecond sm:flex sm:flex-row mini:flex mini:flex-col-reverse mini:justify-center sm:justify-between mini:items-center sm:p-3">
@@ -27,7 +28,7 @@
                 class="h-full mini:mt-4  sm:mt-0 mini:mb-5 sm:m-0 flex flex-row items-center sm:mr-3 bg-white w-48 justify-center rounded-2xl">
                 <img src="{{ asset('image/potion.svg') }}" alt="" class="w-12 h-12">
                 <p class="text-black font-poppins text-xl font-medium">
-                    X <span class="bg-green-400 rounded-md p-1">3</span> Health
+                    X <span class="bg-green-400 rounded-md p-1" id="healthspan"></span> Health
                 </p>
             </div>
         </div>
@@ -64,6 +65,9 @@
                 Konfirm
 
             </button>
+            {{-- <button class="bg-yellow-400 w-32 h-12 showGameOverModal">
+                Pop Up
+            </button> --}}
         </div>
 
     </div>
@@ -97,6 +101,49 @@
     </div>
 
 
+
+    <div
+    class="finishgamemodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white rounded shadow-lg w-1/3">
+        <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
+            <img src="{{ asset('/image/check.png') }}" alt="" class="w-24 h-24">
+            <h3 class="text-black font-poppins text-2xl font-bold">
+                Selamat! Kamu telah menyelesaikan Level ini!
+            </h3>
+        </div>
+        <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
+            Nilai :
+        </div>
+        <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
+            <button
+                class="continuebutton bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
+                lanjut
+            </button>
+        </div>
+    </div>
+</div>
+
+
+    <div
+        class="gameovermodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded shadow-lg w-1/3">
+            <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
+                <img src="{{ asset('/image/gameover.png') }}" alt="" class="w-24 h-24">
+                <h3 class="text-black font-poppins text-2xl font-bold">
+                    Game Over
+                </h3>
+            </div>
+            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
+                Tetap Semangat!! Ayok bisa yok!
+            </div>
+            <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
+                <button
+                    class="tryagainbutton bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
+                    Coba Lagi
+                </button>
+            </div>
+        </div>
+    </div>
     <div
         class="wrongmodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
         <div class="bg-greenySecond rounded shadow-lg w-1/3">
@@ -119,12 +166,16 @@
         </div>
     </div>
 
+
 </body>
 <script src="{{ asset('script/modal.js') }}"></script>
 
 <script>
     var soalobject = @json($getsoal);
+    var soalhealth = @json($gethealth->healthPoint);
     let counter = 0;
+    let healthcounter = soalhealth;
+    const healthspan = document.getElementById("healthspan");
     const nomer = document.getElementById("nomer");
     const pertanyaan = document.getElementById("pertanyaan");
     const jawaban = document.getElementById("jawaban");
@@ -133,20 +184,23 @@
     const jawabanasli = document.getElementById("jawabanasli");
 
     let currentindex;
+
     debug();
 
     function debug() {
 
-        nomer.innerText = "Nomer : " + (counter+1);
+        healthspan.innerText = healthcounter;
+        nomer.innerText = "Nomer : " + (counter + 1);
         currentindex = soalobject[counter];
-        if(currentindex.imgpath){
+        if (currentindex.imgpath) {
             gambarsoal.classList.remove('hidden');
             gambarsoal.src = "http://bioup.test/" + currentindex.imgpath;
-        } else if(!currentindex.imgpath) {
+        } else if (!currentindex.imgpath) {
             gambarsoal.classList.add('hidden');
         }
         pertanyaan.innerText = currentindex.pertanyaan;
         jawaban.value = "";
+
 
     };
 
@@ -155,24 +209,38 @@
         if (!jawaban.value) {
             alert("jawaban tidak boleh kosong");
         } else if (jawaban.value) {
-            const check = jawaban.value.replace(/\s+/g,'').toLowerCase();
-            if (check == (currentindex.jawaban.replace(/\s+/g,'').toLowerCase())) {
+            const check = jawaban.value.replace(/\s+/g, '').toLowerCase();
+            if (check == (currentindex.jawaban.replace(/\s+/g, '').toLowerCase())) {
                 counter++
                 if (counter < soalobject.length) {
                     // jawaban.value = "";
                     debug();
                 } else {
-                    alert("INDEX HABIS!");
+                    finishgamemodal.classList.remove('hidden');
                 }
             } else {
+                healthcounter--;
+
                 counter++
                 if (counter < soalobject.length) {
-                    wrongmodal.classList.remove('hidden');
-                    jawabanasli.innerText = "Jawaban : " +currentindex.jawaban;
-                    debug();
+                    if (healthcounter < 1) {
+                        wrongmodal.classList.remove('hidden');
+                        jawabanasli.innerText = "Jawaban : " + currentindex.jawaban;
+                        gameovermodal.classList.remove('hidden');
+                        debug();
+
+                    } else {
+                        wrongmodal.classList.remove('hidden');
+                        jawabanasli.innerText = "Jawaban : " + currentindex.jawaban;
+                        debug();
+                    }
+
                 } else {
-                    alert("INDEX HABIS!");
+                    finishgamemodal.classList.remove('hidden');
                 }
+
+
+
             }
         }
 

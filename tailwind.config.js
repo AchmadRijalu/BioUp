@@ -255,6 +255,7 @@ module.exports = {
         },
         fontFamily: {
             poppins :['Poppins'],
+            Bebas : ['Bebas Neue'],
             sans: [
                 'Roboto',
                 'system-ui',

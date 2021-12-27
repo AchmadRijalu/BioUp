@@ -11,7 +11,7 @@
 
 <body>
 
-    <button class="bg-yellow-400 w-32 h-24 showModal">
+    <button class="bg-yellow-400 w-32 h-12 showModal">
         Pop Up
     </button>
 
@@ -21,7 +21,7 @@
 
 
     </div> --}}
-    <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+    <div class=" h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded shadow-lg w-1/3">
             <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
                 <img src="{{asset('image/gameover.png')}}" alt="" class="w-24 h-24">
@@ -43,7 +43,7 @@
 </body>
 
 
-<script src="{{asset('script/modal.js')}}">
 
-</script>
+
+
 </html>
