@@ -74,6 +74,6 @@ class User extends Authenticatable
     // }
     public function leaderboard()
     {
-        return $this->belongsTo(leaderboard::class, 'user_id');
+        return $this->belongsTo(leaderboard::class);
     }
 }

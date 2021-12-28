@@ -9,10 +9,12 @@ class leaderboard extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'totalscore'];
+
     protected $table = 'bio12_leaderboards';
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class , 'id', 'user_id');
     }
 }

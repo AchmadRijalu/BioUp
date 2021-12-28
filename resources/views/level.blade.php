@@ -14,7 +14,7 @@
                 class=" sm:flex sm:flex-row mini:flex mini:flex-col mini:justify-center mini-items-center sm:justify-between items-center  text-white min-h-full text-3xl  w-full  ">
 
                 <div class="flex flex-row sm:w-52  sm:h-full mini:w-52 mini:h-1/3 items-center  mini:justify-center ">
-                    <img src="{{ $char->charimgpath }}" alt="" class="sm:w-32 sm:h-32 mini:w-36 mini:h-36">
+                    <img src="/{{ $char->charimgpath }}" alt="" class="sm:w-32 sm:h-32 mini:w-36 mini:h-36">
                     <h1 class=" font-bold">
                         {{ $char->nama }}
                     </h1>

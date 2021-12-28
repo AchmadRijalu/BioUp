@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\leaderboard;
 use App\Models\UserLevel;
 use Illuminate\Http\Request;
 use App\Models\UserCharacter;
@@ -26,6 +27,11 @@ class CharController extends Controller
                 'user_id' => Auth::id(),
                 'character_id' => 1,
                 'score' => 0,
+            ]);
+
+            leaderboard::create([
+                'user_id' => Auth::id(),
+                'totalscore' => '0'
             ]);
 
             for ($i = 0; $i < 3; $i++) {

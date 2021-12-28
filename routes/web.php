@@ -7,6 +7,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::resource('soal', SoalController::class)->middleware('auth');
 
 Route::resource('level', LevelController::class)->middleware('auth');
 
+Route::resource('papan', LeaderboardController::class)->middleware('auth');
+
 // Route::get('/level', function () {
 //     return view('level');
 // })
@@ -45,9 +48,9 @@ Route::get('/presoal', function () {
     return view('presoal');
 })->middleware('auth');
 
-Route::get('/papan', function () {
-    return view('papan');
-})->middleware('auth');
+// Route::get('/papan', function () {
+//     return view('papan');
+// })->middleware('auth');
 
 Route::get('/pupup', function(){
 return view('PupUp');
