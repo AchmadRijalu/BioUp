@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Models\leaderboard;
 use App\Models\UserLevel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserCharacter;
 use Illuminate\Support\Carbon;
@@ -20,30 +21,68 @@ class CharController extends Controller
      */
     public function index()
     {
+        $test = User::where('id', Auth::id())->first()->characters;
+        $total_score = 0;
+
+        foreach ($test as $score) {
+            $total_score += $score->pivot->score;
+        }
+
+        $test1 = Character::all();
+        $loop = 1;
         $loop1 = 1;
-        //
-        if(UserCharacter::where('user_id', Auth::id())->first() == null){
-            UserCharacter::create([
-                'user_id' => Auth::id(),
-                'character_id' => 1,
-                'score' => 0,
-            ]);
-
-            leaderboard::create([
-                'user_id' => Auth::id(),
-                'totalscore' => '0'
-            ]);
-
-            for ($i = 0; $i < 3; $i++) {
-                DB::table('bio12_user_levels')->insert([
-                    'level_id' => $loop1++,
-                    'character_id' => 1,
+        foreach ($test1 as $check) {
+            $loop1 = $loop1;
+            if ($check->reqscore <= $total_score && $check->id > $test->count()) {
+                DB::table('bio12_user_characters')->insert([
                     'user_id' => Auth::id(),
+                    'character_id' => $loop,
                     'score' => 0,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
+                if ($loop == 1) {
+                    for ($i = 0; $i < 3; $i++) {
+                        DB::table('bio12_user_levels')->insert([
+                            'level_id' => $loop1++,
+                            'character_id' => 1,
+                            'user_id' => Auth::id(),
+                            'score' => 0,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]);
+                    }
+                    DB::table('bio12_leaderboards')->insert([
+                        'user_id' => Auth::id(),
+                        'totalscore' => 0,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]);
+                } else {
+                    for ($i = 1; $i <= 3; $i++) {
+                        DB::table('bio12_user_levels')->insert([
+                            'level_id' => $loop1++,
+                            'character_id' => $loop,
+                            'user_id' => Auth::id(),
+                            'score' => 0,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]);
+                    }
+                }
+                if ($loop == 6) {
+                    DB::table('bio12_user_levels')->insert([
+                        'level_id' => 16,
+                        'character_id' => $loop,
+                        'user_id' => Auth::id(),
+                        'score' => 0,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]);
+                }
             }
+            $loop1 += 3;
+            $loop++;
         }
         $character = Character::all();
         $userchar = UserCharacter::where('user_id', Auth::id())
