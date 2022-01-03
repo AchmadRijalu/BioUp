@@ -109,8 +109,9 @@ class SoalController extends Controller
         $getsoal = Level::findorfail($id)->soals->shuffle();
         $gethealth = Character::findorfail($level->character_id);
         $size = sizeof(Level::findorfail($id)->soals->shuffle());
+        $jsonencoded = json_encode($getsoal);
 
-        return view('soal', compact('getsoal', 'size', 'gethealth', 'level'));
+        return view('soal', compact('jsonencoded','getsoal', 'size', 'gethealth', 'level'));
     }
 
     /**

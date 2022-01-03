@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bermain!</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-
+    @csrf
     <div class="bg-greenySecond w-full h-screen flex flex-col items-center">
         <div class="w-full sm:h-3/4 mini:h-screen flex flex-col items-center p-4 bg-greenySecond">
             <div
@@ -134,7 +134,7 @@
                 </h3>
             </div>
             <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
-                Nilai :
+                <p id="nilai">Nilai : </p>
             </div>
             <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
                 <button
@@ -208,6 +208,7 @@
     const gambarsoal = document.getElementById("gambarsoal");
     const pressed = document.getElementById("pressed");
     const jawabanasli = document.getElementById("jawabanasli");
+    const nilai = document.getElementById("nilai");
 
     let currentindex;
 
@@ -246,7 +247,7 @@
                     finishgamemodal.classList.remove('hidden');
                 }
             } else {
-                // healthcounter--;
+                healthcounter--;
 
                 counter++;
                 if (counter < soalobject.length) {
@@ -265,6 +266,7 @@
                 } else {
                     finishgamemodal.classList.remove('hidden');
                     score = benarjawab * 5;
+                    nilai.innerText = "Nilai : " + score;
                 }
             }
         }
