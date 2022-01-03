@@ -23,14 +23,10 @@ class LevelController extends Controller
     {
         $tempscore = $request->score;
         $levelID = $request->levelID;
-        if ($tempscore > 100) {
-            $accessToken = Auth::user()->token();
-            DB::table('oauth_refresh_tokens')->where('access_token_id', $accessToken->id)->update(['revoked' => true]);
-            $accessToken->revoke();
-            $user = User::where('id', Auth::id())->first();
-            $user->update([
-                'is_active' => '0'
-            ]);
+        if ($tempscore > 100 && $levelID != 16) {
+            $this->ban();
+        } else if ($tempscore > 150 && $levelID == 16) {
+            $this->ban();
         } else {
             $this->scoreproccess($tempscore, $levelID);
         }
@@ -70,5 +66,16 @@ class LevelController extends Controller
                 'updated_at' => Carbon::now()
             ]);
         }
+    }
+
+    private function ban()
+    {
+        $accessToken = Auth::user()->token();
+        DB::table('oauth_refresh_tokens')->where('access_token_id', $accessToken->id)->update(['revoked' => true]);
+        $accessToken->revoke();
+        $user = User::where('id', Auth::id())->first();
+        $user->update([
+            'is_active' => '0'
+        ]);
     }
 }
