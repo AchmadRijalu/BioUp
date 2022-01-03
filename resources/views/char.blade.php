@@ -34,7 +34,7 @@
                                 </p>
                                 <p>
                                     @if (count($userchar) > $count)
-                                        Total Skor : {{ $userchar->first()->score }}
+                                        Total Skor : {{ $userchar->where('user_id', Auth::id())->where('character_id', $charloop->id)->first()->score }}
                                     @else
                                         <strong class="font-semibold text-red-500">Terkunci</strong>(Butuh {{ $charloop->reqscore }} skor)
                                     @endif

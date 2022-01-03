@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Bermain!</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
 
 <body>
-
+    @csrf
     <div class="bg-greenySecond w-full min-h-screen flex flex-col items-center p-4">
         <div
             class="w-full sm:h-20 bg-greenySecond sm:flex sm:flex-row mini:flex mini:flex-col-reverse mini:justify-center sm:justify-between mini:items-center sm:p-3">
@@ -103,25 +105,25 @@
 
 
     <div
-    class="finishgamemodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
-    <div class="bg-white rounded shadow-lg w-1/3">
-        <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
-            <img src="{{ asset('/image/check.png') }}" alt="" class="w-24 h-24">
-            <h3 class="text-black font-poppins text-2xl font-bold">
-                Selamat! Kamu telah menyelesaikan Level ini!
-            </h3>
-        </div>
-        <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
-            Nilai :
-        </div>
-        <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
-            <button
-                class="continuebutton bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
-                lanjut
-            </button>
+        class="finishgamemodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded shadow-lg w-1/3">
+            <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
+                <img src="{{ asset('/image/check.png') }}" alt="" class="w-24 h-24">
+                <h3 class="text-black font-poppins text-2xl font-bold">
+                    Selamat! Kamu telah menyelesaikan Level ini!
+                </h3>
+            </div>
+            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
+                Nilai :
+            </div>
+            <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
+                <button
+                    class="continuebutton bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
+                    lanjut
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
 
     <div
@@ -173,7 +175,11 @@
 <script>
     var soalobject = @json($getsoal);
     var soalhealth = @json($gethealth->healthPoint);
-    let counter = 0;
+    let charid = @json($level->character_id);
+    let levelid = @json($level->id);
+    let benarjawab = 20;
+    let score = 0;
+    let counter = 19;
     let healthcounter = soalhealth;
     const healthspan = document.getElementById("healthspan");
     const nomer = document.getElementById("nomer");
@@ -211,7 +217,8 @@
         } else if (jawaban.value) {
             const check = jawaban.value.replace(/\s+/g, '').toLowerCase();
             if (check == (currentindex.jawaban.replace(/\s+/g, '').toLowerCase())) {
-                counter++
+                counter++;
+                benarjawab++;
                 if (counter < soalobject.length) {
                     // jawaban.value = "";
                     debug();
@@ -219,9 +226,9 @@
                     finishgamemodal.classList.remove('hidden');
                 }
             } else {
-                healthcounter--;
+                // healthcounter--;
 
-                counter++
+                counter++;
                 if (counter < soalobject.length) {
                     if (healthcounter < 1) {
                         wrongmodal.classList.remove('hidden');
@@ -237,30 +244,37 @@
 
                 } else {
                     finishgamemodal.classList.remove('hidden');
+                    score = benarjawab * 5;
                 }
-
-
-
             }
         }
-
-        // if (!jawaban.value) {
-        //     alert("jawaban tidak boleh kosong");
-
-        // } else if (jawaban.value = currentindex.jawaban) {
-        //     counter++;
-        //     if (counter < soalobject.length) {
-        //         debug();
-        //     } else {
-        //         alert("INDEX HABIS");
-        //     };
-        // } else {
-        //     alert("Jawaban salah");
-        // }
-
     });
-    // function pressed() {
-    //
+    continuebutton.addEventListener('click', function(e) {
+        finishgamemodal.classList.add('hidden');
+        var _token = $("input[name='_token']").val();
+        e.preventDefault();
+        $.ajax({
+            url: "{{ route('soal.store') }}",
+            type: 'POST',
+            data: {
+                _token: _token,
+                character_id: charid,
+                level_id: levelid,
+                updatescore: score,
+            },
+            success: function(response) {
+                if (response.success) {
+                    console.log("ajax working"); //Message come from controller
+                } else {
+                    alert("Error");
+                }
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+        window.location.href = "{{ route('character.index') }}";
+    })
 </script>
 
 

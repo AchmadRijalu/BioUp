@@ -29,6 +29,7 @@ const buttonvalue = document.querySelector('#buttonvalue');
 
 
 
+
 // window.addEventListener('beforeunload', function(event){
 //     let url = "/presoal";
 //     let join = location.href = url;
@@ -55,7 +56,6 @@ showModal.addEventListener('click', function () {
 
 removeWrongmodal.addEventListener('click', function () {
     wrongmodal.classList.add('hidden');
-
 });
 
 // showGameOverModal.addEventListener('click', function(){
@@ -71,11 +71,6 @@ tryagainbutton.addEventListener('click', function(){
         // event.returnValue = join;
 })
 
-
-continuebutton.addEventListener('click', function(){
-    finishgamemodal.classList.add('hidden');
-    window.location.href = "/papan";
-})
 
 tombol.addEventListener('click', function(){
     const press = document.getElementById("jawaban");
@@ -116,6 +111,7 @@ else if(musicon.classList.contains('hidden')){
 }
 
 })
+
 
 // const tombolBack = document.querySelector('.backPreSoalButton');
 
