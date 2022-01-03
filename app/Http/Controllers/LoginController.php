@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     /**
@@ -84,19 +86,29 @@ class LoginController extends Controller
     }
 
     public function authenticate(Request $request){
+
+
          $credentials =$request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
+        $check = DB::table('users')->where('email', $request->email)->first();
+
         if(Auth::id() != null){
             return redirect()->intended(route('character.index'));
         }
 
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            return redirect()->intended(route('character.index'));
+        if($check->is_active == 1){
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+                return redirect()->intended(route('character.index'));
+            }
         }
+        else{
+            return back()->with('loginBanned', 'Akun telah di Ban');
+        }
+
 
         // return redirect()->intended(route('character.index'));
         return back()->with('loginError', 'Login Gagal');
