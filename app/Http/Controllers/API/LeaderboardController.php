@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\leaderboard;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class LeaderboardController extends Controller
 {
-    public function getLeaderboard(){
+    public function getLeaderboard(Request $request){
+        Log::create([
+            'activity' => "Get Leaderboard | ". Auth::user()->email." | ".$request->ip()
+        ]);
         $user = Auth::id();
         $allleaderboard = leaderboard::all()->sortBy([
             ['totalscore', 'desc'],

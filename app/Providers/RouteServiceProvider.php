@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Log;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -59,9 +60,17 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
-        RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinutes(5,5)->by($request->ip())->response(function () {
+        RateLimiter::for('loginapi', function (Request $request) {
+            return Limit::perMinutes(5,5)->by($request->ip())->response(function (Request $request) {
+                Log::create([
+                    'activity' => "Login blocked. Reason: Spamming login | $request->email | ".$request->ip()
+                ]);
                 return response(['message'=>'SPAM TERDETEKSI! AKSES LOGIN DIBLOKIR SELAMA 5 MENIT!'], 200);
+            });;
+        });
+        RateLimiter::for('loginweb', function (Request $request) {
+            return Limit::perMinutes(5,5)->by($request->ip())->response(function () {
+                return view('login');
             });;
         });
     }
