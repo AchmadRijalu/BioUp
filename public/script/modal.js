@@ -62,14 +62,14 @@ removeWrongmodal.addEventListener('click', function () {
 //     gameovermodal.classList.remove('hidden');
 // })
 
-tryagainbutton.addEventListener('click', function(){
-    gameovermodal.classList.add('hidden');
-    history.back();
-    // let url = "/character";
-        // let join = location.href = url;
-        // let join = location.reload();
-        // event.returnValue = join;
-})
+// tryagainbutton.addEventListener('click', function(){
+//     gameovermodal.classList.add('hidden');
+//     history.back();
+//     // let url = "/character";
+//         // let join = location.href = url;
+//         // let join = location.reload();
+//         // event.returnValue = join;
+// })
 
 
 tombol.addEventListener('click', function(){

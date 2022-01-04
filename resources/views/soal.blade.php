@@ -134,7 +134,7 @@
                 </h3>
             </div>
             <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
-                <p id="nilai">Nilai : </p>
+                Nilai :
             </div>
             <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
                 <button
@@ -197,9 +197,9 @@
     var soalhealth = @json($gethealth->healthPoint);
     let charid = @json($level->character_id);
     let levelid = @json($level->id);
-    let benarjawab = 20;
+    let benarjawab = 0;
     let score = 0;
-    let counter = 19;
+    let counter = 0;
     let healthcounter = soalhealth;
     const healthspan = document.getElementById("healthspan");
     const nomer = document.getElementById("nomer");
@@ -209,7 +209,6 @@
     const pressed = document.getElementById("pressed");
     const jawabanasli = document.getElementById("jawabanasli");
     const nilai = document.getElementById("nilai");
-
     let currentindex;
 
     debug();
@@ -240,11 +239,14 @@
             if (check == (currentindex.jawaban.replace(/\s+/g, '').toLowerCase())) {
                 counter++;
                 benarjawab++;
+                alert(benarjawab);
                 if (counter < soalobject.length) {
                     // jawaban.value = "";
                     debug();
                 } else {
                     finishgamemodal.classList.remove('hidden');
+                    score = benarjawab * 5;
+                    nilai.innerText = "Nilai : " + score;
                 }
             } else {
                 healthcounter--;
@@ -255,6 +257,7 @@
                         wrongmodal.classList.remove('hidden');
                         jawabanasli.innerText = "Jawaban : " + currentindex.jawaban;
                         gameovermodal.classList.remove('hidden');
+                        score = benarjawab * 5;
                         debug();
 
                     } else {
@@ -297,6 +300,40 @@
         });
         window.location.href = "{{ route('character.index') }}";
     })
+
+    tryagainbutton.addEventListener('click', function(){
+    gameovermodal.classList.add('hidden');
+
+        var _token1 = $("input[name='_token']").val();
+        event.preventDefault();
+        $.ajax({
+            url: "{{ route('soal.store') }}",
+            type: 'POST',
+            data: {
+                _token1: _token1,
+                character_id: charid,
+                level_id: levelid,
+                updatescore: score,
+            },
+            success: function(response) {
+                if (response.success) {
+                    console.log("ajax working"); //Message come from controller
+                } else {
+                    alert("Error");
+                }
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+
+
+    history.back();
+    // let url = "/character";
+        // let join = location.href = url;
+        // let join = location.reload();
+        // event.returnValue = join;
+})
 </script>
 
 
