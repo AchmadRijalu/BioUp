@@ -5,7 +5,6 @@ const removeModal = document.querySelector('.removeModal');
 
 const gameovermodal = document.querySelector('.gameovermodal');
 // const showGameOverModal = document.querySelector('.showGameOverModal');
-const tryagainbutton = document.querySelector('.tryagainbutton');
 
 const wrongmodal = document.querySelector('.wrongmodal');
 const removeWrongmodal = document.querySelector('.removewrongmodal');
@@ -14,6 +13,7 @@ const tombol = document.querySelector('.tombol');
 
 const finishgamemodal = document.querySelector('.finishgamemodal');
 const continuebutton = document.querySelector('.continuebutton');
+
 
 const buttonMusic = document.querySelector('.buttonMusic');
 const musicon = document.querySelector('.musicon');
@@ -58,18 +58,6 @@ removeWrongmodal.addEventListener('click', function () {
     wrongmodal.classList.add('hidden');
 });
 
-// showGameOverModal.addEventListener('click', function(){
-//     gameovermodal.classList.remove('hidden');
-// })
-
-// tryagainbutton.addEventListener('click', function(){
-//     gameovermodal.classList.add('hidden');
-//     history.back();
-//     // let url = "/character";
-//         // let join = location.href = url;
-//         // let join = location.reload();
-//         // event.returnValue = join;
-// })
 
 
 tombol.addEventListener('click', function(){

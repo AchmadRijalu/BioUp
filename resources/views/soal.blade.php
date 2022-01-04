@@ -75,19 +75,26 @@
 
         <div class="w-full sm:h-1/4 sm:mt-20 mini:h-screen  bg-greenySecond flex flex-col p-4 justify-end">
             <div class="flex flex-row">
-                <svg xmlns="http://www.w3.org/2000/svg" class="musicon h-12 w-12 mb-2 text-white animate-ping" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="musicon h-12 w-12 mb-2 text-white animate-ping"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
 
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="musicoff h-12 w-12 mb-2 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                  </svg>
-                <button type="button" id="buttonvalue" class="buttonMusic text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2 ml-2 dark:focus:ring-yellow-900 font-poppins">
+                <svg xmlns="http://www.w3.org/2000/svg" class="musicoff h-12 w-12 mb-2 text-white hidden" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                        clip-rule="evenodd" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                </svg>
+                <button type="button" id="buttonvalue"
+                    class="buttonMusic text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2 ml-2 dark:focus:ring-yellow-900 font-poppins">
                     Musik Nyala
                 </button>
                 <audio autoplay loop class="play">
-                    <source src="{{asset('audio/ingameBG.mp3')}}">
+                    <source src="{{ asset('audio/ingameBG.mp3') }}">
                 </audio>
 
             </div>
@@ -134,7 +141,7 @@
                 </h3>
             </div>
             <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
-                Nilai :
+                <p id="nilai">Nilai : </p>
             </div>
             <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
                 <button
@@ -160,7 +167,7 @@
             </div>
             <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
                 <button
-                    class="tryagainbutton bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
+                    class="tryagain bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
                     Coba Lagi
                 </button>
             </div>
@@ -193,14 +200,6 @@
 <script src="{{ asset('script/modal.js') }}"></script>
 
 <script>
-    var soalobject = @json($getsoal);
-    var soalhealth = @json($gethealth->healthPoint);
-    let charid = @json($level->character_id);
-    let levelid = @json($level->id);
-    let benarjawab = 0;
-    let score = 0;
-    let counter = 0;
-    let healthcounter = soalhealth;
     const healthspan = document.getElementById("healthspan");
     const nomer = document.getElementById("nomer");
     const pertanyaan = document.getElementById("pertanyaan");
@@ -209,7 +208,16 @@
     const pressed = document.getElementById("pressed");
     const jawabanasli = document.getElementById("jawabanasli");
     const nilai = document.getElementById("nilai");
+    const tryagain = document.querySelector('.tryagain');
+    var soalhealth = @json($gethealth->healthPoint);
+    let charid = @json($level->character_id);
+    let levelid = @json($level->id);
+    let benarjawab = 0;
+    let score = 0;
+    let counter = 0;
+    let healthcounter = soalhealth;
     let currentindex;
+    var soalobject = @json($getsoal);
 
     debug();
 
@@ -239,7 +247,6 @@
             if (check == (currentindex.jawaban.replace(/\s+/g, '').toLowerCase())) {
                 counter++;
                 benarjawab++;
-                alert(benarjawab);
                 if (counter < soalobject.length) {
                     // jawaban.value = "";
                     debug();
@@ -250,7 +257,6 @@
                 }
             } else {
                 healthcounter--;
-
                 counter++;
                 if (counter < soalobject.length) {
                     if (healthcounter < 1) {
@@ -273,6 +279,32 @@
                 }
             }
         }
+    });
+    tryagain.addEventListener('click', function(e) {
+        gameovermodal.classList.add('hidden');
+        var _token = $("input[name='_token']").val();
+        e.preventDefault();
+        $.ajax({
+            url: "{{ route('soal.store') }}",
+            type: 'POST',
+            data: {
+                _token: _token,
+                character_id: charid,
+                level_id: levelid,
+                updatescore: score,
+            },
+            success: function(response) {
+                if (response.success) {
+                    console.log("ajax working"); //Message come from controller
+                } else {
+                    alert("Error");
+                }
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+        history.back();
     });
     continuebutton.addEventListener('click', function(e) {
         finishgamemodal.classList.add('hidden');
@@ -299,41 +331,7 @@
             }
         });
         window.location.href = "{{ route('character.index') }}";
-    })
-
-    tryagainbutton.addEventListener('click', function(){
-    gameovermodal.classList.add('hidden');
-
-        var _token1 = $("input[name='_token']").val();
-        event.preventDefault();
-        $.ajax({
-            url: "{{ route('soal.store') }}",
-            type: 'POST',
-            data: {
-                _token1: _token1,
-                character_id: charid,
-                level_id: levelid,
-                updatescore: score,
-            },
-            success: function(response) {
-                if (response.success) {
-                    console.log("ajax working"); //Message come from controller
-                } else {
-                    alert("Error");
-                }
-            },
-            error: function(error) {
-                console.log(error)
-            }
-        });
-
-
-    history.back();
-    // let url = "/character";
-        // let join = location.href = url;
-        // let join = location.reload();
-        // event.returnValue = join;
-})
+    });
 </script>
 
 
