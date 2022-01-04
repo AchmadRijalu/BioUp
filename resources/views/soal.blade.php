@@ -12,69 +12,72 @@
 
 <body>
     @csrf
-    <div class="bg-greenySecond w-full h-screen flex flex-col items-center">
-        <div class="w-full sm:h-3/4 mini:h-screen flex flex-col items-center p-4 bg-greenySecond">
-            <div
-                class="w-full sm:h-20 bg-greenySecond sm:flex sm:flex-row mini:flex mini:flex-col-reverse mini:justify-center sm:justify-between mini:items-center sm:p-3">
-                <div class=" h-full flex flex-row items-center sm:ml-3 ">
+    <div class="bg-greenySecond min-w-full mini:min-h-screen flex flex-col items-center mini:justify-between">
+        <div class="w-full sm:h-3/4 mini:min-h-3/4 flex flex-col items-center  p-4 bg-greenySecond">
+            <div class="w-full flex flex-col items-center">
+                <div
+                    class="w-full sm:h-20 bg-greenySecond sm:flex sm:flex-row mini:flex mini:flex-col-reverse mini:justify-center sm:justify-between mini:items-center sm:p-3">
+                    <div class=" h-full flex flex-row items-center sm:ml-3 ">
+                        <button
+                            class="showModal bg-red-700  w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-red-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center">
+                            Keluar
+
+                        </button>
+
+                    </div>
+                    <div
+                        class="h-full mini:mt-4  sm:mt-0 mini:mb-5 sm:m-0 flex flex-row items-center sm:mr-3 bg-white w-48 justify-center rounded-2xl">
+                        <img src="{{ asset('image/potion.svg') }}" alt="" class="w-12 h-12">
+                        <p class="text-black font-poppins text-xl font-medium">
+                            X <span class="bg-green-400 rounded-md p-1" id="healthspan"></span> Health
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
+                    <div class="w-full h-12  font-poppins">
+                        <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max" id="nomer">
+                            Nomer :
+                        </h1>
+                    </div>
+
+                    <img src="" alt="" class="w-96 h-80 hidden" id="gambarsoal">
+
+                    <div class="w-full bg-white p-7 font-poppins text-2xl font-medium rounded-2xl mt-7">
+                        <p id="pertanyaan">
+                            pertanyaan
+
+                        </p>
+
+                    </div>
+
+                </div>
+                {{-- ISI JAWABAN --}}
+                <div class="bg-white w-3/4 h-12 p-3  mt-2 flex flex-row items-center rounded-2xl ">
+                    <input type="text" name="jawaban" id="jawaban" value="" placeholder="Jawab Disini"
+                        autocomplete="off"
+                        class="  w-full
+                     text-2xl font-medium font-poppins focus:outline-none focus:shadow-outline focus:border-blue-300"
+                        autofocus>
+                </div>
+                <div class=" mt-5 p-4 ">
                     <button
-                        class="showModal bg-red-700  w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-red-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center
-                    ">
-                        Keluar
+                        class="bg-green-700 tombol w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center
+                    "
+                        id="pressed">
+                        Konfirm
 
                     </button>
-
-                </div>
-                <div
-                    class="h-full mini:mt-4  sm:mt-0 mini:mb-5 sm:m-0 flex flex-row items-center sm:mr-3 bg-white w-48 justify-center rounded-2xl">
-                    <img src="{{ asset('image/potion.svg') }}" alt="" class="w-12 h-12">
-                    <p class="text-black font-poppins text-xl font-medium">
-                        X <span class="bg-green-400 rounded-md p-1" id="healthspan"></span> Health
-                    </p>
+                    {{-- <button class="bg-yellow-400 w-32 h-12 showGameOverModal">
+                    Pop Up
+                     </button> --}}
                 </div>
             </div>
 
-            <div class="bg-white w-full p-3  mt-8 flex flex-col items-center rounded-2xl mb-11">
-                <div class="w-full h-12  font-poppins">
-                    <h1 class="text-black text-4xl font-bold ml-10 shadow-sm w-max" id="nomer">
-                        Nomer :
-                    </h1>
-                </div>
 
-                <img src="" alt="" class="w-96 h-80 hidden" id="gambarsoal">
-
-                <div class="w-full bg-white p-7 font-poppins text-2xl font-medium rounded-2xl mt-7">
-                    <p id="pertanyaan">
-                        pertanyaan
-
-                    </p>
-
-                </div>
-
-            </div>
-            {{-- ISI JAWABAN --}}
-            <div class="bg-white w-3/4 h-12 p-3  mt-2 flex flex-row items-center rounded-2xl ">
-                <input type="text" name="jawaban" id="jawaban" value="" placeholder="Jawab Disini" autocomplete="off"
-                    class="  w-full
-                         text-2xl font-medium font-poppins focus:outline-none focus:shadow-outline focus:border-blue-300"
-                    autofocus>
-            </div>
-            <div class=" mt-5 p-4 ">
-                <button
-                    class="bg-green-700 tombol w-48 h-12 text-2xl border-2 drop-shadow-2xl  rounded-3xl text-white font-bold active:bg-green-700 hover:bg-green-600 transition delay-50 font-poppins  flex justify-content-center justify-center items-center
-                        "
-                    id="pressed">
-                    Konfirm
-
-                </button>
-                {{-- <button class="bg-yellow-400 w-32 h-12 showGameOverModal">
-                Pop Up
-            </button> --}}
-            </div>
         </div>
-
-        <div class="w-full sm:h-1/4 sm:mt-20 mini:h-screen  bg-greenySecond flex flex-col p-4 justify-end">
-            <div class="flex flex-row">
+        <div class="mini:w-full sm:h-1/4  mini:h-1/4   bg-white flex flex-col  justify-end">
+            <div class="flex flex-row bg-greenySecond  mini:w-full p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="musicon h-12 w-12 mb-2 text-white animate-ping"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -99,6 +102,8 @@
 
             </div>
         </div>
+
+
     </div>
 
 
@@ -155,17 +160,19 @@
 
     <div
         class="gameovermodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white rounded shadow-lg w-1/3">
-            <div class="border-b px-4 py-2 flex flex-col justify-center items-center">
+        <div class="bg-white rounded shadow-lg w-1/3 h-96">
+            <div class=" px-4 py-2 flex flex-col justify-center items-center mini:h-3/5">
                 <img src="{{ asset('/image/gameover.png') }}" alt="" class="w-24 h-24">
                 <h3 class="text-black font-poppins text-2xl font-bold">
                     Game Over
                 </h3>
             </div>
-            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold">
-                Tetap Semangat!! Ayok bisa yok!
+            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold mini:h-1/5 text-xl">
+                <p>
+                    Tetap Semangat!! Ayok bisa yok!
+                </p>
             </div>
-            <div class="flex justify-center items-center w-100 border-t p-3 mt-2">
+            <div class="flex justify-center items-center w-100  p-3 mt-2 mini:h-1/5">
                 <button
                     class="tryagain bg-greeny hover:bg-greenySecond px-3 py-1 rounded text-white mr-1 animate-bounce font-poppins">
                     Coba Lagi
@@ -175,19 +182,19 @@
     </div>
     <div
         class="wrongmodal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
-        <div class="bg-greenySecond rounded shadow-lg w-1/3">
-            <div class=" px-4 py-2 flex flex-col justify-center items-center">
+        <div class="bg-greenySecond rounded shadow-lg sm:w-2/5  h-96">
+            <div class=" px-4 py-2 flex flex-col justify-center items-center mini:h-3/5">
                 <img src="{{ asset('image/BioUp! Logo (Transparent).png') }}" alt="" class="w-24 h-24">
                 <h3 class="text-white font-poppins text-3xl font-bold">
                     Jawaban Anda Salah
                 </h3>
             </div>
-            <div class="p-3 flex flex-row justify-center font-poppins items-center font-semibold text-white mt-2">
-                <p id="jawabanasli">Jawaban : </p>
+            <div class="p-3 flex flex-row justify-center font-poppins  text-lg font-semibold text-white  mini:h-1/5">
+                <p id="jawabanasli" class="">Jawaban : </p>
             </div>
-            <div class="flex justify-center items-center w-100  p-3 mt-2">
+            <div class="flex justify-center items-center w-100  p-3 mt-2 mini:h-1/5">
                 <button
-                    class="bg-green-500 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1  font-poppins removewrongmodal">
+                    class="bg-green-500 hover:bg-blue-700 px-3 py-1 rounded text-white  mini:w-36  font-poppins removewrongmodal">
                     OKE
                 </button>
 
