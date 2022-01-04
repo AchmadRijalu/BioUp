@@ -296,6 +296,7 @@
             success: function(response) {
                 if (response.success) {
                     console.log("ajax working"); //Message come from controller
+                    window.location.href = "{{ route('character.index') }}";
                 } else {
                     alert("Error");
                 }
@@ -304,7 +305,9 @@
                 console.log(error)
             }
         });
-        history.back();
+
+
+
     });
     continuebutton.addEventListener('click', function(e) {
         finishgamemodal.classList.add('hidden');
@@ -322,6 +325,7 @@
             success: function(response) {
                 if (response.success) {
                     console.log("ajax working"); //Message come from controller
+                    window.location.href = "{{ route('character.index') }}";
                 } else {
                     alert("Error");
                 }
@@ -330,7 +334,7 @@
                 console.log(error)
             }
         });
-        window.location.href = "{{ route('character.index') }}";
+
     });
 </script>
 
