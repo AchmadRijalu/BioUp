@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Level;
 use App\Models\Character;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class LevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
 
@@ -58,12 +59,14 @@ class LevelController extends Controller
         $presoalcount = Level::findorfail($id)->soals->count();
         $char = Character::findorfail($presoal->character_id);
 
-        if($presoal->users->first() == null){
+        if ($presoal->users->first() == null) {
             return redirect('/character');
         } else {
-            return view('presoal', compact('presoal','char', 'presoalscore'));
+            Log::create([
+                'activity' => "Get Soal | " . Auth::user()->email . " | " . $request->ip()
+            ]);
+            return view('presoal', compact('presoal', 'char', 'presoalscore'));
         }
-
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\Log;
 use App\Models\Soal;
 use App\Models\Level;
 use App\Models\User;
@@ -28,7 +29,6 @@ class SoalController extends Controller
         //
         $soal = Soal::all();
 
-
         return view('soal', compact('soal'));
     }
 
@@ -50,6 +50,9 @@ class SoalController extends Controller
      */
     public function store(Request $request)
     {
+        Log::create([
+            'activity' => "Attempt to upload score | " . Auth::user()->email . " | " . $request->ip()
+        ]);
         if ($request->character_id != 6) {
             if ($request->updatescore > 100) {
                 $accessToken = Auth::user()->token();
@@ -93,6 +96,9 @@ class SoalController extends Controller
                 'updated_at' => Carbon::now()
             ]);
         }
+        Log::create([
+            'activity' => "Upload " . $check2 . " score | " . Auth::user()->email . " | " . $request->ip()
+        ]);
         return response()->json(['success' => 'Add Data Berhasil']);
     }
 
@@ -102,7 +108,7 @@ class SoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
         $level = Level::findorfail($id);
@@ -111,7 +117,10 @@ class SoalController extends Controller
         $size = sizeof(Level::findorfail($id)->soals->shuffle());
         $jsonencoded = json_encode($getsoal);
 
-        return view('soal', compact('jsonencoded','getsoal', 'size', 'gethealth', 'level'));
+        Log::create([
+            'activity' => "Get Soal | " . Auth::user()->email . " | " . $request->ip()
+        ]);
+        return view('soal', compact('jsonencoded', 'getsoal', 'size', 'gethealth', 'level'));
     }
 
     /**

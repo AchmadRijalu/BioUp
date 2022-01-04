@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\leaderboard;
+use App\Models\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeaderboardController extends Controller
 {
@@ -12,9 +14,12 @@ class LeaderboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $board = leaderboard::orderBy('totalscore', 'desc')->simplePaginate(10);
+        Log::create([
+            'activity' => "Get Leaderboard | " . Auth::user()->email . " | " . $request->ip()
+        ]);
         return view('papan', compact('board'));
     }
 

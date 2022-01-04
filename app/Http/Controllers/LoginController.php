@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -85,41 +86,58 @@ class LoginController extends Controller
         //
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
 
 
-         $credentials =$request->validate([
+        $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
         $check = DB::table('users')->where('email', $request->email)->first();
 
-        if(Auth::id() != null){
+        if (Auth::id() != null) {
             return redirect()->intended(route('character.index'));
         }
 
-        if($check->is_active == 1){
-            if(Auth::attempt($credentials)){
+        if ($check->is_active == 1) {
+            Log::create([
+                'activity' => "Attempt login | $request->email | " . $request->ip()
+            ]);
+            if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
+                Log::create([
+                    'activity' => "Login success | $request->email | " . $request->ip()
+                ]);
                 return redirect()->intended(route('character.index'));
             }
-        }
-        else{
+        } else {
+            Log::create([
+                'activity' => "Login blocked. Reason: Ban | $request->email | " . $request->ip()
+            ]);
             return back()->with('loginBanned', 'Akun telah di Ban');
         }
 
-
+        Log::create([
+            'activity' => "Login failed. Reason: Wrong Email/Password | $request->email | " . $request->ip()
+        ]);
         // return redirect()->intended(route('character.index'));
         return back()->with('loginError', 'Login Gagal');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        Log::create([
+            'activity' => "Logout | $user->email | " . $request->ip()
+        ]);
         return redirect('/');
     }
 }

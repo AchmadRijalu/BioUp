@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Models\leaderboard;
 use App\Models\UserLevel;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserCharacter;
@@ -19,7 +20,7 @@ class CharController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $test = User::where('id', Auth::id())->first()->characters;
         $total_score = 0;
@@ -41,7 +42,13 @@ class CharController extends Controller
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
+                Log::create([
+                    'activity' => "Add new character | " . Auth::user()->email . " | " . $request->ip()
+                ]);
                 if ($loop == 1) {
+                    Log::create([
+                        'activity' => "New User, add first character & leaderboard | " . Auth::user()->email . " | " . $request->ip()
+                    ]);
                     for ($i = 0; $i < 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
                             'level_id' => $loop1++,
@@ -59,6 +66,9 @@ class CharController extends Controller
                         'updated_at' => Carbon::now()
                     ]);
                 } else {
+                    Log::create([
+                        'activity' => "Add new levels | " . Auth::user()->email . " | " . $request->ip()
+                    ]);
                     for ($i = 1; $i <= 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
                             'level_id' => $loop1++,
@@ -71,6 +81,9 @@ class CharController extends Controller
                     }
                 }
                 if ($loop == 6) {
+                    Log::create([
+                        'activity' => "Add last character | " . Auth::user()->email . " | " . $request->ip()
+                    ]);
                     DB::table('bio12_user_levels')->insert([
                         'level_id' => 16,
                         'character_id' => $loop,
@@ -89,6 +102,9 @@ class CharController extends Controller
             ->orderBy('character_id')
             ->get();
 
+        Log::create([
+            'activity' => "Get character | " . Auth::user()->email . " | " . $request->ip()
+        ]);
         return view('char', compact('character', 'userchar'));
     }
 
@@ -119,20 +135,22 @@ class CharController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
         // $levelchar = Character::findorfail($id)->levels->where('user_id', Auth::id());
         $levelchar = DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('character_id', '=', $id)->select('level_id', 'user_id')->get();
         $char = Character::findorfail($id);
-        $uc = UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first();
+        $uc = UserCharacter::where([['user_id', '=', Auth::id()], ['character_id', '=', $id]])->first();
         // dd($uc);
-        if(UserCharacter::where([['user_id', '=', Auth::id()],['character_id','=', $id]])->first() == null){
+        if (UserCharacter::where([['user_id', '=', Auth::id()], ['character_id', '=', $id]])->first() == null) {
             return redirect('/character');
         } else {
+            Log::create([
+                'activity' => "Get level | " . Auth::user()->email . " | " . $request->ip()
+            ]);
             return view('level', compact('char', 'levelchar'));
         }
-
     }
 
     /**

@@ -61,15 +61,18 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
         RateLimiter::for('loginapi', function (Request $request) {
-            return Limit::perMinutes(5,5)->by($request->ip())->response(function (Request $request) {
+            return Limit::perMinutes(5, 5)->by($request->ip())->response(function (Request $request) {
                 Log::create([
-                    'activity' => "Login blocked. Reason: Spamming login | $request->email | ".$request->ip()
+                    'activity' => "Login blocked. Reason: Spamming login | $request->email | " . $request->ip()
                 ]);
-                return response(['message'=>'SPAM TERDETEKSI! AKSES LOGIN DIBLOKIR SELAMA 5 MENIT!'], 200);
+                return response(['message' => 'SPAM TERDETEKSI! AKSES LOGIN DIBLOKIR SELAMA 5 MENIT!'], 200);
             });;
         });
         RateLimiter::for('loginweb', function (Request $request) {
-            return Limit::perMinutes(5,5)->by($request->ip())->response(function () {
+            return Limit::perMinutes(5, 5)->by($request->ip())->response(function (Request $request) {
+                Log::create([
+                    'activity' => "Login blocked. Reason: Spamming login | $request->email | " . $request->ip()
+                ]);
                 return view('login');
             });;
         });
