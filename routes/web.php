@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('login');
 })->name('/')->middleware('guest');
 
-Route::post('/', [LoginController::class, 'authenticate']);
+Route::post('/', [LoginController::class, 'authenticate'])->middleware('throttle:loginweb');
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::resource('register', RegisterController::class)->middleware('guest');

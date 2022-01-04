@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', [RegisterController::class, 'register']);
 //mencegah user untuk bisa attack server dengan method spam login.
-Route::post('login', [LoginController::class, 'Login'])->middleware('throttle:login');
+Route::post('login', [LoginController::class, 'Login'])->middleware('throttle:loginapi');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::get('character', [CharacterController::class, 'getAllChara']);
