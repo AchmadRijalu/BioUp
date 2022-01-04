@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Laravel\Passport\Client;
-
-use function PHPUnit\Framework\isEmpty;
 
 class LoginController extends Controller
 {
@@ -41,10 +40,12 @@ class LoginController extends Controller
 
         $check = DB::table('users')->where('email', $request->email)->first();
         if ($check != null) {
+            Log::create([
+                'activity' => "Attempt login | $request->email | ".$request->ip()
+            ]);
             if ($check->is_active == '1') {
                 if ($check->is_login == '0') {
                     if (Auth::attempt($user)) {
-
                         $response = Http::asForm()->post('http://192.168.1.67/oauth/token', [ //ini diganti
                             'grant_type' => 'password',
                             'client_id' => $this->client->id,
@@ -55,30 +56,45 @@ class LoginController extends Controller
                         ]);
                         if (!$response == null) {
                             $this->isLogin(Auth::id());
+                            Log::create([
+                                'activity' => "Login success | $request->email | ".$request->ip()
+                            ]);
                         }
                         return $response->json();
                     } else {
+                        Log::create([
+                            'activity' => "Login failed. Reason: Wrong Email/Password | $request->email | ".$request->ip()
+                        ]);
                         return response([
                             'message' => 'Email atau Password salah'
                         ]);
                     }
                 } else {
+                    Log::create([
+                        'activity' => "Login failed. Reason: Another Device | $request->email | ".$request->ip()
+                    ]);
                     return response([
                         'message' => 'Akun sudah digunakan diperangkat lain'
                     ]);
                 }
             } else {
+                Log::create([
+                    'activity' => "Login blocked. Reason: Ban | $request->email | ".$request->ip()
+                ]);
                 return response([
                     'message' => 'Akun telah diban'
                 ]);
             }
         } else {
+            Log::create([
+                'activity' => "Login failed. Reason: Wrong Email/Password | $request->email | ".$request->ip()
+            ]);
             return response([
                 'message' => 'Email atau Password salah'
             ]);
         }
     }
-    public function logout()
+    public function logout(Request $request)
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
@@ -88,6 +104,9 @@ class LoginController extends Controller
             'is_login' => '0'
         ]);
         $accessToken->revoke();
+        Log::create([
+            'activity' => "Logout | $user->email | ".$request->ip()
+        ]);
         return response([
             'message' => 'Berhasil Log Out!'
         ]);

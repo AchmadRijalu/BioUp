@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Character;
+use App\Models\Log;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,27 +14,30 @@ use Illuminate\Support\Facades\DB;
 class CharacterController extends Controller
 {
 
-    public function getAllChara()
+    public function getAllChara(Request $request)
     {
-        $this->addCharaByScore();
+        $this->addCharaByScore($request);
         $chara = User::where('id', Auth::id())->first()->characters;
         $allChara = Character::all();
-
+        Log::create([
+            'activity' => "Get character | ". Auth::user()->email." | ".$request->ip()
+        ]);
         return response()->json(['userchara' => $chara, 'allchara' => $allChara]);
     }
 
-    public function getLevelByChara($charID)
+    public function getLevelByChara(Request $request,$charID)
     {
         $chara = DB::table('bio12_user_levels')->where('user_id', '=', Auth::id())->where('character_id', '=', $charID)->select('level_id', 'character_id', 'user_id', 'score')->get();
-        // User::where('id',Auth::id())->first()->levels->where('character_id',$charID);
+        Log::create([
+            'activity' => "Get level | ". Auth::user()->email." | ".$request->ip()
+        ]);
         return response()->json(['levels' => $chara]);
     }
 
-    private function addCharaByScore() //menambahkan data ke tabel user_characters dan user_levels secara otomatis
+    private function addCharaByScore(Request $request) //menambahkan data ke tabel user_characters dan user_levels secara otomatis
     {
         $test = User::where('id', Auth::id())->first()->characters;
         $total_score = 0;
-
         foreach ($test as $score) {
             $total_score += $score->pivot->score;
         }
@@ -50,7 +55,13 @@ class CharacterController extends Controller
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
+                Log::create([
+                    'activity' => "Add new character | ". Auth::user()->email." | ".$request->ip()
+                ]);
                 if ($loop == 1) {
+                    Log::create([
+                        'activity' => "New User, add first character & leaderboard | ". Auth::user()->email." | ".$request->ip()
+                    ]);
                     for ($i = 0; $i < 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
                             'level_id' => $loop1++,
@@ -68,6 +79,9 @@ class CharacterController extends Controller
                         'updated_at' => Carbon::now()
                     ]);
                 } else {
+                    Log::create([
+                        'activity' => "Add new levels | ". Auth::user()->email." | ".$request->ip()
+                    ]);
                     for ($i = 1; $i <= 3; $i++) {
                         DB::table('bio12_user_levels')->insert([
                             'level_id' => $loop1++,
@@ -80,6 +94,9 @@ class CharacterController extends Controller
                     }
                 }
                 if ($loop == 6) {
+                    Log::create([
+                        'activity' => "Add last character | ". Auth::user()->email." | ".$request->ip()
+                    ]);
                     DB::table('bio12_user_levels')->insert([
                         'level_id' => 16,
                         'character_id' => $loop,

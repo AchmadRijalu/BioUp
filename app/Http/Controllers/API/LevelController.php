@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\leaderboard;
 use App\Models\Level;
+use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,21 +14,36 @@ use Illuminate\Support\Facades\DB;
 
 class LevelController extends Controller
 {
-    public function getSoalByLevel($levelID)
+    public function getSoalByLevel(Request $request,$levelID)
     {
         $level = Level::where('id', $levelID)->first()->soals->shuffle();
+        Log::create([
+            'activity' => "Get Soal | ". Auth::user()->email." | ".$request->ip()
+        ]);
         return response()->json(['soals' => $level]);
     }
 
     public function upScore(Request $request)
     {
+        Log::create([
+            'activity' => "Attempt to upload score | ". Auth::user()->email." | ".$request->ip()
+        ]);
         $tempscore = $request->score;
         $levelID = $request->levelID;
         if ($tempscore > 100 && $levelID != 16) {
+            Log::create([
+                'activity' => "Ban Account for violation | ". Auth::user()->email." | ".$request->ip()
+            ]);
             $this->ban();
         } else if ($tempscore > 150 && $levelID == 16) {
+            Log::create([
+                'activity' => "Ban Account for violation | ". Auth::user()->email." | ".$request->ip()
+            ]);
             $this->ban();
         } else {
+            Log::create([
+                'activity' => "Upload ".$tempscore." score | ". Auth::user()->email." | ".$request->ip()
+            ]);
             $this->scoreproccess($tempscore, $levelID);
         }
     }
