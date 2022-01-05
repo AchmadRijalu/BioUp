@@ -97,7 +97,7 @@ class SoalController extends Controller
             ]);
         }
         Log::create([
-            'activity' => "Upload " . $check2 . " score | " . Auth::user()->email . " | " . $request->ip()
+            'activity' => "Upload " . $request->updatescore . " score | " . Auth::user()->email . " | " . $request->ip()
         ]);
         return response()->json(['success' => 'Add Data Berhasil']);
     }
