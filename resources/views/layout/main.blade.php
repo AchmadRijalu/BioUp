@@ -24,17 +24,21 @@
             </div>
         </div>
         <audio autoplay loop preload="@section('content')" id="my_audio">
-            <source src="{{asset('audio/harvest.mp3')}}">
-        </audio>
-        <audio autoplay id="my_audio">
-            <source src="{{asset('audio/clickedSound.mp3')}}">
-        </audio>
-    </div>
+                <source src="{{ asset('audio/harvest.mp3') }}">
+            </audio>
+            <audio autoplay id="my_audio">
+                <source src="{{ asset('audio/clickedSound.mp3') }}">
+            </audio>
+        </div>
 
 
-</body>
-<script src="{{ asset('script/script.js') }}">
 
-</script>
+    </body>
+    <script src="{{ asset('script/script.js') }}">
 
-</html>
+    </script>
+    <script src="{{ asset('script/testing.js') }}">
+
+    </script>
+
+    </html>
