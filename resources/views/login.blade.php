@@ -121,9 +121,7 @@
                         </svg>
                     </button>
                     <br>
-                    <button class="w-24 h-24" onclick="location.href='/testing'">
-                        Pencet
-                    </button>
+
                 </div>
 
 
