@@ -235,7 +235,7 @@
         currentindex = soalobject[counter];
         if (currentindex.imgpath) {
             gambarsoal.classList.remove('hidden');
-            gambarsoal.src = "http://bioup.test/" + currentindex.imgpath;
+            gambarsoal.src = "http://bioup.my.id/" + currentindex.imgpath;
         } else if (!currentindex.imgpath) {
             gambarsoal.classList.add('hidden');
         }
