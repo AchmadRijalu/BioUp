@@ -26,12 +26,12 @@
                 Sudah punya akun? <a href="/" class="font-bold underline  hover:text-green-500">Klik disini</a>
             </p>
 
-            <form action="{{ route('register.store') }}" method="POST">
+            <form action="{{ route('register.store') }}" method="POST" class="flex flex-col justify-center items-center">
                 @csrf
                 <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
                     {{-- <label for="username" class="">Username</label><br> --}}
                     <input type="text" name="username" value=""
-                        class=" font-poppins text-greeny border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                        class=" font-poppins focus:outline-none text-greeny border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
                         placeholder="Username">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -44,7 +44,7 @@
                 <div class="mt-3 w-full mt-4  flex justify-content-center justify-center items-center">
                     {{-- <label for="email">Email</label><br> --}}
                     <input type="email" name="email" value=""
-                        class="font-poppins border-4 text-greeny border-green-400 rounded-xl h-10 w-96 font-bold"
+                        class="font-poppins border-4 focus:outline-none text-greeny border-green-400 rounded-xl h-10 w-96 font-bold"
                         placeholder="Email">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -56,7 +56,7 @@
                 <div class="mt-3 w-full mt-4 flex justify-content-center justify-center items-center">
                     {{-- <label for="email">Password</label><br> --}}
                     <input type="password" name="password" value=""
-                        class=" font-poppins border-4 border-green-400 rounded-xl h-10 w-96 font-bold"
+                        class=" font-poppins border-4 focus:outline-none border-green-400 rounded-xl h-10 w-96 font-bold"
                         placeholder="Password">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6 ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -68,7 +68,7 @@
                 <div class="mt-3 w-full mt-4 flex justify-content-center justify-center items-center">
                     {{-- <label for="email">Password Confirmation</label><br> --}}
                     <input type="text" name="nama" value=""
-                        class="font-poppins border-4 text-greeny border-green-400 rounded-xl h-10 w-96 font-bold"
+                        class="font-poppins border-4 focus:outline-none text-greeny border-green-400 rounded-xl h-10 w-96 font-bold"
                         placeholder="nama">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6 ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -80,7 +80,7 @@
                 <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
                     {{-- <label for="username" class="">Username</label><br> --}}
                     <input type="text" name="sekolah" value=""
-                        class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                        class=" font-poppins border-4 focus:outline-none border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
                         placeholder="Sekolah">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -95,7 +95,7 @@
                 <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
                     {{-- <label for="username" class="">Username</label><br> --}}
                     <input type="text" name="kota" value=""
-                        class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                        class=" font-poppins border-4 focus:outline-none border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
                         placeholder="Kota">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
@@ -107,15 +107,41 @@
                 <div class="mt-8 w-full  flex justify-content-center justify-center items-center">
                     {{-- <label for="username" class="">Username</label><br> --}}
                     <input type="text" name="birthyear" value=""
-                        class=" font-poppins border-4 border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
+                        class=" font-poppins border-4 focus:outline-none border-green-400 font-bold rounded-xl h-10 w-96 focus transition delay-200 font-weight-bold focus:ring-green-600 text-green-500"
                         placeholder="Tahun lahir">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6  ml-1 bg-white text-greeny border-greeny rounded-2xl" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <div class="mt-8 w-100 mt-4 flex flex-column justify-center">
+
+
+
+                <div class="mt-8 w-60 flex justify-content-center  items-center ">
+                    @if ($errors->any())
+                    <div role="alert">
+                        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 rounded-lg">
+                            Perhatian!
+                        </div>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <div
+                                    class="border rounded-lg  border-red-400 rounded-b mt-3 bg-red-100 px-4 py-3 text-red-700">
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                </div>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                </div>
+
+
+
+                <div class="mt-8 w-100 mb-8 mt-4 flex flex-column justify-center">
                     <button
                         class=" font-poppins font-semibold bg-greeny w-72 h-12 text-2xl border-2 rounded-2xl text-white  active:bg-green-700 hover:bg-green-400 transition delay-50"
                         type="submit">

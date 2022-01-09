@@ -39,17 +39,32 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         //
-        $register =User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password'=> Hash::make($request->password),
-            'name' => $request->nama,
-            'school' => $request->sekolah,
-            'city' => $request->kota,
-            'birthyear' => $request->birthyear,
-        ]);
-        $request->session()->flash('success', 'Regisrasi Berhasil!, Silahkan Masuk');
-        return redirect('/');
+          $valid = $request->validate([
+              'username' =>['required'],
+              'email' =>['required', 'email'],
+              'password' =>['required'],
+              'nama' =>['required'],
+              'sekolah' =>['required'],
+              'kota' =>['required'],
+              'birthyear' => ['required', 'numeric'],
+
+          ]);
+
+            $valid =User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password'=> Hash::make($request->password),
+                'name' => $request->nama,
+                'school' => $request->sekolah,
+                'city' => $request->kota,
+                'birthyear' => $request->birthyear,
+            ]);
+            $request->session()->flash('success', 'Regisrasi Berhasil!, Silahkan Masuk');
+            return redirect('/');
+
+
+        return redirect('/register');
+
     }
 
     /**
