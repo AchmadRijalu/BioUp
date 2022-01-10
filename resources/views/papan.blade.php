@@ -57,10 +57,10 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($board as $leader)
+                                @foreach ($board as $key => $leader)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{$loop->iteration}}</div>
+                                        <div class="text-sm text-gray-900">{{$board->firstItem() + $key}}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="  text-sm leading-5 font-semibold ">
@@ -139,6 +139,7 @@
                                 <!-- More people... -->
                             </tbody>
                         </table>
+                        {!! $board->links() !!}
                     </div>
                 </div>
             </div>
