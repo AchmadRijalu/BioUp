@@ -88,8 +88,6 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -100,30 +98,32 @@ class LoginController extends Controller
         if (Auth::id() != null) {
             return redirect()->intended(route('character.index'));
         }
-
-        if ($check->is_active == 1) {
-            Log::create([
-                'activity' => "Attempt login | $request->email | " . $request->ip()
-            ]);
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
+        if ($check != null) {
+            if ($check->is_active == 1) {
                 Log::create([
-                    'activity' => "Login success | $request->email | " . $request->ip()
+                    'activity' => "Attempt login | $request->email | " . $request->ip()
                 ]);
-                return redirect()->intended(route('character.index'));
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+                    Log::create([
+                        'activity' => "Login success | $request->email | " . $request->ip()
+                    ]);
+                    return redirect()->intended(route('character.index'));
+                }
+            } else {
+                Log::create([
+                    'activity' => "Login blocked. Reason: Ban | $request->email | " . $request->ip()
+                ]);
+                return back()->with('loginBanned', 'Akun telah di Ban');
             }
-        } else {
             Log::create([
-                'activity' => "Login blocked. Reason: Ban | $request->email | " . $request->ip()
+                'activity' => "Login failed. Reason: Wrong Email/Password | $request->email | " . $request->ip()
             ]);
-            return back()->with('loginBanned', 'Akun telah di Ban');
+            // return redirect()->intended(route('character.index'));
+            return back()->with('loginError', 'Login Gagal');
+        } else {
+            return back()->with('loginError', 'Email/Password Salah');
         }
-
-        Log::create([
-            'activity' => "Login failed. Reason: Wrong Email/Password | $request->email | " . $request->ip()
-        ]);
-        // return redirect()->intended(route('character.index'));
-        return back()->with('loginError', 'Login Gagal');
     }
 
     public function logout(Request $request)

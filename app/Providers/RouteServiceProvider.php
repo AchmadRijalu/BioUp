@@ -73,7 +73,7 @@ class RouteServiceProvider extends ServiceProvider
                 Log::create([
                     'activity' => "Login blocked. Reason: Spamming login | $request->email | " . $request->ip()
                 ]);
-                return view('login');
+                return back()->with('loginError', 'SPAM TERDETEKSI! AKSES LOGIN DIBLOKIR SELAMA 5 MENIT!');
             });;
         });
     }
